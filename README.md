@@ -1,5 +1,5 @@
-Live CTA MAP Android and Server Application
-**Author:** Tyler McGregor
+# Chicago Transit Authority L Train Live Map Android Application
+
 
 **ABOUT THIS PROJECT**
 
