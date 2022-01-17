@@ -2,8 +2,8 @@
 
 
 **ABOUT THIS PROJECT**
-
-Working on switching this from a school project to an actual releasable Android Application, so code related to school project has been removed in this version, other version is set to private for sercurity purposes.
+Working on switching this from a school project to an actual releasable Android Application, 
+so code related to school project has been removed, original version is its own repo and set to private for sercurity purposes.
 
 **Updated UI:**
 
