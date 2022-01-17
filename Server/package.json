@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "train tracker server",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Tyler McGregor",
+  "license": "ISC",
+  "engines": {
+    "node": "14.15.0"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "firebase": "^9.6.1",
+    "firebase-admin": "^10.0.1",
+    "node": "^17.3.0",
+    "node-schedule": "^2.1.0"
+  }
+}

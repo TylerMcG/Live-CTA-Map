@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200dp"
+    android:layout_height="wrap_content"
+    android:background="@color/transGrey"
+    android:id="@+id/rLayout">
+
+    <ImageView
+        android:id="@+id/rImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:padding="5dp"
+        android:src="@drawable/ic_train" />
+
+
+    <CheckBox
+        android:id="@+id/rCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_toRightOf="@id/rText" />
+
+    <TextView
+        android:id="@+id/rText"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/rImage"
+        android:autoSizeMaxTextSize="18sp"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeTextType="uniform"
+        android:gravity="center"
+        android:text="Yellow Line"
+        android:textColor="@color/black"
+        android:textStyle="bold" />
+
+</RelativeLayout>

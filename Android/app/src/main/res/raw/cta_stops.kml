@@ -1,0 +1,1956 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>CTA_RailStations</name>
+    <Style id="icon-959-777777-labelson">
+      <IconStyle>
+        <color>ff777777</color>
+        <scale>0.4</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/959-wht-circle-blank.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Placemark>
+      <name>35-Bronzeville-IIT</name>
+      <description><![CDATA[LINES Green Line
+ ADDRESS 16 E. 35th Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.625881,41.831678,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Granville</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1119 W. Granville Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.659202,41.993664,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Wellington</name>
+      <description><![CDATA[LINES Brown, Purple (Express)
+ ADDRESS 945 W. Wellington Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.653266,41.936033,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Dempster-Skokie</name>
+      <description><![CDATA[LINES Yellow Line
+ ADDRESS 5001 W. Dempster Street
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.751919,42.038951,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Washington</name>
+      <description><![CDATA[Washington/Dearborn
+ LINES Blue Line
+ ADDRESS 19 N. Dearborn
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.62944,41.883164,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Western</name>
+      <description><![CDATA[Western-Ravenswood
+ LINES Brown Line
+ ADDRESS 4645 N. Western Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.688503,41.96625,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Addison</name>
+      <description><![CDATA[Addison-Ravenswood
+ LINES Brown Line
+ ADDRESS 1818 W. Addison Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.674736,41.947029,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Damen</name>
+      <description><![CDATA[Damen-Ravenswood
+ LINES Brown Line
+ ADDRESS 4643 N. Damen Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.678635,41.966411,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>LaSalle/Van Buren</name>
+      <description><![CDATA[LINES Brown, Orange, Pink, Purple (Express)
+ ADDRESS 121 W. Van Buren Street
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.631734,41.876855,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Harrison</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 608 S. State Street
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.627479,41.874039,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Oak Park</name>
+      <description><![CDATA[Oak Park-Lake
+ LINES Green Line (Lake)
+ ADDRESS 100 S. Oak Park Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.793783,41.886988,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Ashland</name>
+      <description><![CDATA[Ashland-Lake
+ LINES Green (Lake), Pink
+ ADDRESS 1601 W. Lake Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.666951,41.885311,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Grand</name>
+      <description><![CDATA[Grand/Milwaukee
+ LINES Blue Line (O'Hare)
+ ADDRESS 502 N. Milwaukee Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.647578,41.891189,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Damen</name>
+      <description><![CDATA[Damen/Milwaukee
+ LINES Blue Line
+ ADDRESS 1558 N. Damen Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.677437,41.909744,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Belmont</name>
+      <description><![CDATA[Belmont-O'Hare
+ LINES Blue Line
+ ADDRESS 3355 W. Belmont Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.712359,41.938132,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Jefferson Park</name>
+      <description><![CDATA[LINES Blue Line
+ ADDRESS 4917 N. Milwaukee Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.760892,41.970634,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>47th</name>
+      <description><![CDATA[47th-Dan Ryan
+ LINES Red Line
+ ADDRESS 220 W. 47th Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.631026,41.810338,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cottage Grove</name>
+      <description><![CDATA[LINES Green Line
+ ADDRESS 800 E. 63rd Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.605857,41.780309,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Halsted</name>
+      <description><![CDATA[Halsted/63rd
+ LINES Green Line
+ ADDRESS 6321 S. Halsted Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.644023,41.779028,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>47th</name>
+      <description><![CDATA[47th-South Elevated
+ LINES Green Line
+ ADDRESS 314 E. 47th Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.618826,41.809209,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Loyola</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1200 W. Loyola Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.661061,42.001073,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Berwyn</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1121 W. Berwyn Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.658668,41.977984,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Chicago</name>
+      <description><![CDATA[Chicago/State
+ LINES Red Line
+ ADDRESS 800 N. State Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.628176,41.896671,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Sedgwick</name>
+      <description><![CDATA[LINES Brown, Purple (Express)
+ ADDRESS 1536 N. Sedgwick Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.639302,41.910409,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Pulaski</name>
+      <description><![CDATA[Pulaski-Congress
+ LINES Blue Line (Congress)
+ ADDRESS 530 S. Pulaski Road
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.725625,41.873889,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Harlem</name>
+      <description><![CDATA[Harlem-Congress
+ LINES Blue Line (Congress)
+ ADDRESS 701 S. Harlem Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.806961,41.87349,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Kedzie-Homan</name>
+      <description><![CDATA[LINES Blue Line (Congress)
+ ADDRESS 530 S. Kedzie Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.705978,41.874426,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Monroe</name>
+      <description><![CDATA[Monroe/State
+ LINES Red Line
+ ADDRESS 26 S. State
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.627696,41.880745,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Ridgeland</name>
+      <description><![CDATA[LINES Green Line (Lake)
+ ADDRESS 36 N. Ridgeland Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.783661,41.887159,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Western</name>
+      <description><![CDATA[Western/Milwaukee
+ LINES Blue Line (O'Hare)
+ ADDRESS 1909 N. Western Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.687364,41.916157,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Garfield</name>
+      <description><![CDATA[Garfield-South Elevated
+ LINES Green Line
+ ADDRESS 320 E. Garfield Boulevard
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.618324,41.795177,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>35th/Archer</name>
+      <description><![CDATA[LINES Orange Line
+ ADDRESS 3528 S. Leavitt Street
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.680587,41.82956,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Kedzie</name>
+      <description><![CDATA[Kedzie-Douglas
+ LINES Pink
+ ADDRESS 1944 S. Kedzie Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.705428,41.854131,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>UIC-Halsted</name>
+      <description><![CDATA[LINES Blue Line
+ ADDRESS 430 S. Halsted Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.649642,41.875516,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>LaSalle</name>
+      <description><![CDATA[LINES Blue Line
+ ADDRESS 150 W. Congress Parkway
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.631722,41.875568,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Armitage</name>
+      <description><![CDATA[LINES Brown, Purple (Express)
+ ADDRESS 944 W. Armitage Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.652644,41.918217,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Pulaski</name>
+      <description><![CDATA[Pulaski-Lake
+ LINES Green Line (Lake)
+ ADDRESS 4000 W. Lake Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.725404,41.885412,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Conservatory</name>
+      <description><![CDATA[Conservatory-Central Park
+ LINES Green Line (Lake)
+ ADDRESS 3631 W. Lake Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.716523,41.884904,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Addison</name>
+      <description><![CDATA[Addison-North Main
+ LINES Red Line
+ ADDRESS 940 W. Addison Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.653626,41.947428,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Jackson</name>
+      <description><![CDATA[Jackson/Dearborn
+ LINES Blue Line
+ ADDRESS 328 S. Dearborn
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.629296,41.878183,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>South Boulevard</name>
+      <description><![CDATA[LINES Purple Line, Evanston Express
+ ADDRESS 601 W. South Boulevard
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.678329,42.027612,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Bryn Mawr</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1119 W. Bryn Mawr Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.65884,41.983504,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Washington/Wells</name>
+      <description><![CDATA[LINES Brown, Orange, Pink, Purple (Express)
+ ADDRESS 100 N. Wells Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.633854,41.882695,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Adams/Wabash</name>
+      <description><![CDATA[LINES Brown, Orange, Pink, Purple (Express), Green
+ ADDRESS 201 S. Wabash Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.626098,41.87951,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Harlem</name>
+      <description><![CDATA[Harlem-Lake
+ LINES Green Line (Lake)
+ ADDRESS 1 S. Harlem Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.803176,41.886848,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>95/Dan Ryan</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 14 W. 95th Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.624415,41.722376,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Garfield</name>
+      <description><![CDATA[Garfield-Dan Ryan
+ LINES Red Line
+ ADDRESS 220 W. Garfield Boulevard
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.631169,41.795418,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>43rd</name>
+      <description><![CDATA[LINES Green Line
+ ADDRESS 314 E. 43rd Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.619036,41.816463,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Irving Park</name>
+      <description><![CDATA[Irving Park-O'Hare
+ LINES Blue Line
+ ADDRESS 4131 W. Irving Park Road
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.729177,41.95294,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Monroe</name>
+      <description><![CDATA[Monroe/Dearborn
+ LINES Blue Line
+ ADDRESS 114 S. Dearborn
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.629378,41.880703,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Kimball</name>
+      <description><![CDATA[LINES Brown Line
+ ADDRESS 4755 N. Kimball Avenue
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.713142,41.967928,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Kedzie</name>
+      <description><![CDATA[Kedzie-Ravenswood
+ LINES Brown Line
+ ADDRESS 4648 N. Kedzie Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.708844,41.966093,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Medical District</name>
+      <description><![CDATA[LINES Blue Line
+ ADDRESS 430 S. Damen Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.673946,41.875635,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Austin</name>
+      <description><![CDATA[Austin-Congress
+ LINES Blue Line
+ ADDRESS 1050 S. Austin Blvd
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.776785,41.870886,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Logan Square</name>
+      <description><![CDATA[LINES Blue Line
+ ADDRESS 2620 N. Milwaukee Av
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.708541,41.929728,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>51st</name>
+      <description><![CDATA[LINES Green Line
+ ADDRESS 314 E. 51st Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.618502,41.802092,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Ashland</name>
+      <description><![CDATA[Ashland-Midway
+ LINES Orange Line
+ ADDRESS 3011 S. Ashland Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.665312,41.839356,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>18th</name>
+      <description><![CDATA[LINES Pink
+ ADDRESS 1710 W. 18th Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.66916,41.857908,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Western</name>
+      <description><![CDATA[Western-Douglas
+ LINES Pink
+ ADDRESS 2009 S. Western Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.685179,41.854397,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Davis</name>
+      <description><![CDATA[LINES Purple Line, Evanston Express
+ ADDRESS 1612 N. Benson Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.683543,42.04771,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cumberland</name>
+      <description><![CDATA[LINES Blue Line
+ ADDRESS 5800 N. Cumberland Avenue
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.838026,41.984294,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>79th</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 15 W. 79th Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.625178,41.750412,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name><![CDATA[O'Hare]]></name>
+      <description><![CDATA[LINES Blue Line
+ ADDRESS 1000 O'Hare Drive
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.901848,41.978877,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Belmont</name>
+      <description><![CDATA[Belmont-North Main
+ LINES Red, Brown, Purple (Express)
+ ADDRESS 945 W. Belmont Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.65338,41.939751,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Howard</name>
+      <description><![CDATA[LINES Red, Yellow, Purple, Evanston Express
+ ADDRESS 1649 W. Howard Street
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.672892,42.019063,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Laramie</name>
+      <description><![CDATA[LINES Green Line (Lake)
+ ADDRESS 5148 W. Lake Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.754986,41.887163,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Central</name>
+      <description><![CDATA[Central-Lake
+ LINES Green Line (Lake)
+ ADDRESS 350 N. Central Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.76565,41.887389,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Jarvis</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1523 W. Jarvis Street
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.669092,42.015876,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Roosevelt</name>
+      <description><![CDATA[Roosevelt/State
+ LINES Red Line
+ ADDRESS 1167 S. State Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.627402,41.867368,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Western</name>
+      <description><![CDATA[Western-Congress
+ LINES Blue Line (Congress)
+ ADDRESS 430 S. Western Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.688435,41.87553,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Polk</name>
+      <description><![CDATA[LINES Pink
+ ADDRESS 1713 W. Polk Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.669543,41.871563,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cicero</name>
+      <description><![CDATA[Cicero-Congress
+ LINES Blue Line (Congress)
+ ADDRESS 720 S. Cicero Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.745172,41.871608,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Kedzie</name>
+      <description><![CDATA[Kedzie-Lake
+ LINES Green Line (Lake)
+ ADDRESS 3200 W. Lake Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.706155,41.884321,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Kedzie</name>
+      <description><![CDATA[Kedzie-Midway
+ LINES Orange Line
+ ADDRESS 4900 S. Kedzie Avenue
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.704321,41.804348,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Diversey</name>
+      <description><![CDATA[LINES Brown, Purple (Express)
+ ADDRESS 940 W. Diversey Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.653131,41.932732,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Main</name>
+      <description><![CDATA[LINES Purple Line, Evanston Express
+ ADDRESS 836 N. Chicago Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.679538,42.033456,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Thorndale</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1118 W. Thorndale Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.659076,41.990259,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Fullerton</name>
+      <description><![CDATA[LINES Red, Brown, Purple (Express)
+ ADDRESS 943 W. Fullerton Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.652866,41.925051,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Dempster</name>
+      <description><![CDATA[LINES Purple Line, Evanston Express
+ ADDRESS 1316 N. Sherman Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.681602,42.041655,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Chicago</name>
+      <description><![CDATA[Chicago/Franklin
+ LINES Brown, Purple (Express)
+ ADDRESS 300 W. Chicago Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.635947,41.896774,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Francisco</name>
+      <description><![CDATA[LINES Brown Line
+ ADDRESS 4648 N. Francisco Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.701656,41.966147,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Paulina</name>
+      <description><![CDATA[LINES Brown Line
+ ADDRESS 3411 N. Paulina Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.670884,41.943709,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Montrose</name>
+      <description><![CDATA[Montrose-Ravenswood
+ LINES Brown Line
+ ADDRESS 1814 W. Montrose Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.675165,41.961752,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>State/Lake</name>
+      <description><![CDATA[LINES Brown, Orange, Pink, Purple (Express), Green
+ ADDRESS 200 N. State Street
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.627835,41.88574,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Lake</name>
+      <description><![CDATA[Lake/State
+ LINES Red Line
+ ADDRESS 188 N. State
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.627813,41.884809,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Austin</name>
+      <description><![CDATA[Austin-Lake
+ LINES Green Line (Lake)
+ ADDRESS 351 N. Austin Blvd
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.774135,41.887293,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Clinton</name>
+      <description><![CDATA[Clinton-Lake
+ LINES Green (Lake), Pink
+ ADDRESS 540 W. Lake Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.641771,41.885703,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Chicago</name>
+      <description><![CDATA[Chicago/Milwaukee
+ LINES Blue Line
+ ADDRESS 800 N. Milwaukee Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.655214,41.896075,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>California</name>
+      <description><![CDATA[California/Milwaukee
+ LINES Blue Line (O'Hare)
+ ADDRESS 2211 N. California Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.69689,41.921939,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Montrose</name>
+      <description><![CDATA[Montrose-O'Hare
+ LINES Blue Line
+ ADDRESS 4600 W. Montrose Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.743617,41.961487,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>87th</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 15 W. 87th Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.624753,41.735371,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Sox-35th</name>
+      <description><![CDATA[Sox-35th-Dan Ryan
+ LINES Red Line
+ ADDRESS 142 W. 35th Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.630636,41.831191,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>King Drive</name>
+      <description><![CDATA[LINES Green Line
+ ADDRESS 400 E. 63rd Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.615546,41.78013,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Ashland</name>
+      <description><![CDATA[Ashland/63rd
+ LINES Green Line (Englewood)
+ ADDRESS 6315 S. Ashland Avenue
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.663845,41.778953,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Washington/Wabash</name>
+      <description><![CDATA[LINES Brown, Orange, Pink, Purple (Express), Green
+ ADDRESS 29 N. Wabash
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.626189,41.88322,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Roosevelt</name>
+      <description><![CDATA[Roosevelt/Wabash
+ LINES Orange & Green Lines
+ ADDRESS 22 E. Roosevelt Road
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.62659,41.867405,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Lawrence</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1117 W. Lawrence Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.658493,41.969139,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>North/Clybourn</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1599 N. Clybourn Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.649177,41.910655,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Noyes</name>
+      <description><![CDATA[LINES Purple Line, Evanston Express
+ ADDRESS 901 W. Noyes Street
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.683337,42.058282,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Morse</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1358 W. Morse Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.665909,42.008362,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Grand</name>
+      <description><![CDATA[Grand/State
+ LINES Red Line
+ ADDRESS 521 N. State Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.628021,41.891665,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Rockwell</name>
+      <description><![CDATA[LINES Brown Line
+ ADDRESS 4648 N. Rockwell Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.694111,41.96621,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Oak Park</name>
+      <description><![CDATA[Oak Park-Congress
+ LINES Blue Line
+ ADDRESS 950 S. Oak Park Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.791602,41.872108,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Pulaski</name>
+      <description><![CDATA[Pulaski-Midway
+ LINES Orange Line
+ ADDRESS 5106 S. Pulaski Road
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.72445,41.799888,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Forest Park</name>
+      <description><![CDATA[LINES Blue Line
+ ADDRESS 711 S. Des Plaines Avenue
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.817318,41.874257,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Harlem</name>
+      <description><![CDATA[Harlem-O'Hare
+ LINES Blue Line (O'Hare)
+ ADDRESS 5550 N. Harlem Avenue
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.808895,41.982323,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>California</name>
+      <description><![CDATA[California-Lake
+ LINES Green Line (Lake)
+ ADDRESS 2800 W. Lake Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.696234,41.88422,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Addison</name>
+      <description><![CDATA[Addison-O'Hare
+ LINES Blue Line
+ ADDRESS 3622 W. Addison Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.719099,41.94736,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Western</name>
+      <description><![CDATA[Western-Midway
+ LINES Orange Line
+ ADDRESS 4901 S. Western Avenue
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.684065,41.804684,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>California</name>
+      <description><![CDATA[California-Douglas
+ LINES Pink
+ ADDRESS 2011 S. California Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.694823,41.85428,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>54th/Cermak</name>
+      <description><![CDATA[LINES Pink
+ ADDRESS 2134 S. 54th Avenue
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.756692,41.851773,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Clinton</name>
+      <description><![CDATA[Clinton-Congress
+ LINES Blue Line
+ ADDRESS 426 S. Clinton Street
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.640984,41.875539,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Wilson</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 4920 N. Broadway Street
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.657734,41.964254,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Central</name>
+      <description><![CDATA[Central-Evanston
+ LINES Purple Line, Evanston Express
+ ADDRESS 1022 W. Central Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.685617,42.063987,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Foster</name>
+      <description><![CDATA[LINES Purple Line, Evanston Express
+ ADDRESS 900 W. Foster Street
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.68356,42.05416,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Sheridan</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 3940 N. Sheridan Road
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.654929,41.953775,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Clark/Lake</name>
+      <description><![CDATA[LINES Brown, Orange, Pink, Purple (Express), Green, Blue
+ ADDRESS 100 W. Lake
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.630886,41.885737,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Clark/Division</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1200 N. Clark Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.631412,41.90392,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Linden</name>
+      <description><![CDATA[LINES Purple Line, Evanston Express
+ ADDRESS 349 W. Linden Avenue
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.69073,42.073153,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Merchandise Mart</name>
+      <description><![CDATA[LINES Brown, Purple (Express)
+ ADDRESS 350 N. Wells Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.633973,41.888968,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Southport</name>
+      <description><![CDATA[LINES Brown Line
+ ADDRESS 3411 N. Southport Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.66361,41.943812,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Jackson</name>
+      <description><![CDATA[Jackson/State
+ LINES Red Line
+ ADDRESS 230 S. State
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.627596,41.878153,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Rosemont</name>
+      <description><![CDATA[LINES Blue Line
+ ADDRESS 5801 N. River Road
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.859388,41.983507,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Division</name>
+      <description><![CDATA[Division/Milwaukee
+ LINES Blue Line
+ ADDRESS 1200 N. Milwaukee Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.666496,41.903355,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>63rd</name>
+      <description><![CDATA[63rd-Dan Ryan
+ LINES Red Line
+ ADDRESS 220 W. 63rd Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.631,41.780534,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Indiana</name>
+      <description><![CDATA[LINES Green Line
+ ADDRESS 4003 S. Indiana Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.621463,41.821815,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cicero</name>
+      <description><![CDATA[Cicero-Lake
+ LINES Green Line (Lake)
+ ADDRESS 4800 W. Lake Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.744698,41.886519,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Quincy/Wells</name>
+      <description><![CDATA[LINES Brown, Orange, Pink, Purple (Express)
+ ADDRESS 220 S. Wells Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.63374,41.878723,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Argyle</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 1118 W. Argyle Street
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.65853,41.973453,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Irving Park</name>
+      <description><![CDATA[Irving Park-Ravenswood
+ LINES Brown Line
+ ADDRESS 1816 W. Irving Park Dr
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.674956,41.954523,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Racine</name>
+      <description><![CDATA[LINES Blue Line
+ ADDRESS 430 S. Racine Avenue
+ NOT ADA ACCESSIBLE
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.659456,41.875886,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Library</name>
+      <description><![CDATA[LINES Brown, Orange, Pink, Purple (Express)
+ ADDRESS 26 W. Van Buren Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.628209,41.876908,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>69th</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 15 W. 69th Street
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.625809,41.768368,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Midway</name>
+      <description><![CDATA[Midway Airport
+ LINES Orange Line
+ ADDRESS 4612 W. 59th Street
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.737956,41.786614,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Halsted</name>
+      <description><![CDATA[Halsted-Midway
+ LINES Orange Line
+ ADDRESS 2520 S. Archer Avenue
+ ADA Accessible
+  Park & Ride]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.648131,41.846901,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Damen</name>
+      <description><![CDATA[LINES Pink
+ ADDRESS 2010 S. Damen Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.675974,41.854515,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Central Park</name>
+      <description><![CDATA[LINES Pink
+ ADDRESS 1915 S. Central Park Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.71488,41.853992,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Pulaski</name>
+      <description><![CDATA[Pulaski-Douglas
+ LINES Pink
+ ADDRESS 2005 S. Pulaski Road
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.724327,41.853857,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Kostner</name>
+      <description><![CDATA[LINES Pink
+ ADDRESS 2019 S. Kostner Avenue
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.733264,41.853751,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cicero</name>
+      <description><![CDATA[Cicero-Douglas
+ LINES Pink
+ ADDRESS 2133 S. 48th Court
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.745342,41.851925,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cermak-Chinatown</name>
+      <description><![CDATA[LINES Red Line
+ ADDRESS 138 W. Cermak Road
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.630968,41.853206,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Oakton-Skokie</name>
+      <description><![CDATA[LINES Yellow Line
+ ADDRESS 4802 W Oakton
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.747221,42.026244,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Morgan</name>
+      <description><![CDATA[LINES Green (Lake), Pink
+ ADDRESS 1000 W Lake St
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.652128,41.885577,0
+        </coordinates>
+      </Point>
+    </Placemark>
+    <Placemark>
+      <name>Cermak-McCormick Pl</name>
+      <description><![CDATA[Cermak-McCormick Place
+ LINES Green Line
+ ADDRESS 12 E. Cermak Rd.
+ ADA Accessible
+  ]]></description>
+      <styleUrl>#icon-959-777777-labelson</styleUrl>
+      <Point>
+        <coordinates>
+          -87.626402,41.853115,0
+        </coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>

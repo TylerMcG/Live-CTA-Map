@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <item
+        android:id="@+id/mapFragment"
+        android:title ="@string/home"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="always|withText"
+        />
+    <item
+        android:id="@+id/trainsFragment"
+        android:icon="@drawable/ic_train"
+        android:title="@string/train"
+        app:showAsAction="always|withText"
+         />
+    <item
+        android:id="@+id/stations"
+        android:title="@string/show_train_stations"
+        android:icon="@drawable/ic_stations"
+        app:showAsAction="always|withText"
+        />
+    <item
+        android:id="@+id/alertFragment"
+        android:title="@string/notification"
+        android:icon="@drawable/ic_notification"
+        app:showAsAction="always|withText"
+        />
+
+</menu>

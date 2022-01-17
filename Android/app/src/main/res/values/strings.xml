@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">ChicagoTrainTracker</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="red_line">Red Line</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="graphic_image_of_a_train">Graphic Image of a Train</string>
+    <string name="chicago_train_tracker">Chicago Train Tracker</string>
+    <string name="show_train_stations">Stations</string>
+    <string name="home">Home</string>
+    <string name="notification">Alerts</string>
+    <string name="train">Show Trains</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

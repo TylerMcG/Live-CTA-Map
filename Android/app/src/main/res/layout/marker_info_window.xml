@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_height="200dp"
+    android:layout_width="200dp">
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@color/white">
+        <View
+            android:id="@+id/rectangle_at_the_top"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:background="@color/unselectedGrey"
+            android:visibility="visible" />
+        <ImageView
+            android:id="@+id/trainImage"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/rectangle_at_the_top"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:contentDescription="@string/graphic_image_of_a_train"
+            android:src="@drawable/ic_train" />
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignTop="@+id/rectangle_at_the_top"
+            android:layout_alignBottom="@+id/rectangle_at_the_top"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:gravity="center_horizontal"
+            android:autoSizeTextType="uniform"
+            android:autoSizeMaxTextSize="25dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="0dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/snippetTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/rectangle_at_the_top"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp"
+            android:ellipsize="end"
+            android:maxLines="10"
+            android:autoSizeTextType="uniform"
+            android:gravity="left">
+        </TextView>
+    </RelativeLayout>
+
+
+</LinearLayout>

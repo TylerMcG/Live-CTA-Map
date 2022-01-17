@@ -1,0 +1,16 @@
+node_modules
+Procfile
+ServiceAccountKey.json
+firebaserc
+firebase-debug.log
+firebase.json
+package-lock.json
+.env
+/.env
+/node_modules
+/ServiceAccountKey.json
+firebaserc
+/Procfile
+/firebase-debug.log
+/firebase.json
+/package-lock.json
