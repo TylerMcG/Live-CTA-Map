@@ -68,13 +68,7 @@ const yellowLineJob = schedule.scheduleJob("*/16 * * * * *", function() {
   // callCTAUpdateDB(7);
 });
 
-// const brownLineJob = scheduleTrainJob(4, 0, 2, 0, 2);
-// const greenLineJob = scheduleTrainJob(3, 50, 1, 10, 3);
-// const orangeLineJob = scheduleTrainJob(3, 30, 1, 30, 4);
-// const purpleLineJob = scheduleTrainJob(4, 20, 1, 45, 5);
-// const pinkLineJob = scheduleTrainJob(4, 0, 1, 30, 6);
-// const yellowLineJob = scheduleTrainJob(4, 45, 11, 20, 7);
-
+//returns CTA API url for each train line
 function getTrainRoute(index) {
   switch (index) {
     case 0:
@@ -98,6 +92,8 @@ function getTrainRoute(index) {
   }
 }
 
+//needed to keep server active until plan is changedn on Heroku. This will run 24/7 but will run out of dyno hours after 23 days into every month.
+//once the plan is changed to a paid plan, this can be removed.
 function keepServerRunning(){
   try{
     const serverCall = https.request(serverURL, (response) => {
@@ -111,7 +107,7 @@ function keepServerRunning(){
 }
 
 
-
+//makes the actual API call, gets the data as JSON and uses data to update the Firebase Realtime Database.
  function callCTAUpdateDB(i){
     const trainRequest = https.request(getTrainRoute(i), (response) =>{
       let data = "";
@@ -132,9 +128,9 @@ function keepServerRunning(){
     trainRequest.end();
 }
 
-
+//writes data to Realtime database
  function updateTrainData(trainLineData, trainColor) {
-   //single train
+   //single train (duplicate code could be abstracted to method)
   try{
     var ref = db.ref(trainColor);
     removeOldTrains(ref);
@@ -187,7 +183,7 @@ function keepServerRunning(){
      console.log("Train json error: " +  error);
    }
  }
-//remove a train if it has not been updated in more than 30 seconds.
+//remove a train if it has not been updated in more than 20 seconds.
  function removeOldTrains(ref) {
    try {
      ref.on("value", function(snapshot) {
@@ -203,13 +199,13 @@ function keepServerRunning(){
    }
  }
 
-
+//runs callCTAUpdateDB for train if it is within the scheduled hours of operations
 function scheduleTrainJob(startHour, startMins, endHour, endMins, trainIndex){
     if (checkHours(startHour, startMins, endHour, endMins)) {
       callCTAUpdateDB(trainIndex);
     }
  }
-//needs fixing
+//checks to see if the current time is within the bounds of a trains hours of operations
  function checkHours(startHour, startMins, endHour, endMins) {
    today = new Date();
    todayHours = today.getHours();
