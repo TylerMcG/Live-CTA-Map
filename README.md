@@ -4,8 +4,14 @@
 **ABOUT THIS PROJECT**
 Working on switching this from a school project to an actual releasable Android Application, 
 so code related to school project has been removed, original version is its own repo and set to private for sercurity purposes.
-This project provides useful visualization of train locations and stops on all L train services in Chicago. I would eventually like to add a directions API to
-this project to provide even more useful information to users who may be overwhelmed when using L train services in Chicago, though cost is currently a prohibitive factor.
+
+This project provides useful visualization of train locations and stops on all L train services in Chicago, as well as textual 
+information for each train and train stop that may be useful to travelers. The android application loads a google map that allows 
+the user to toggle which train lines they want to display on the map with a press of a button. By clicking on a train, the train line,
+next stop, final stop destination, delays, arrival time, and if the train is due soon or approaching its stop are displayed in a marker window. 
+Another button toggle will display all the L train stops on the map, which when clicked provide what lines it services, the address, if it has park 
+and ride, and if it is ADA accesible in a marker window. By clicking on a stop, you can get directions to it, provided by the Google maps application. 
+An alerts button opens a webview client that links to the CTA 'L' Systems alert, though the entire CTA website and links from their webpage can be accessed. 
 
 # HOW TO USE
 **Requirements:** 
