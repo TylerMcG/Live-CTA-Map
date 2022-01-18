@@ -4,6 +4,8 @@
 **ABOUT THIS PROJECT**
 Working on switching this from a school project to an actual releasable Android Application, 
 so code related to school project has been removed, original version is its own repo and set to private for sercurity purposes.
+This project provides useful visualization of train locations and stops on all L train services in Chicago. I would eventually like to add a directions API to
+this project to provide even more useful information to users who may be overwhelmed when using L train services in Chicago, though cost is currently a prohibitive factor.
 
 # HOW TO USE
 **Requirements:** 
@@ -50,15 +52,19 @@ Job scheduler for all other lines checks to see if the train is in the hours of 
 
 Job Scheduler currently makes self request to server to keep it active 24/7.
 
-Added a method to remove trains no longer active from the database if they have not been written to in 20 seconds since last write.
+Added a method to remove trains no longer active from the database if they have not been written in the previous 20 seconds.
 
 # **Working On**
 
 **Updating UI and Features:** color schemes, adding dark mode, adjusting transparency in show trains frame, adjust text fields, fonts, and layout in marker window adapter
 
-add fragment for when a user cannot login, and method to send email to contact me to fix problem in this instance
+Add fragment for when a user cannot login, and method to log error and send email to contact me to fix problem if going to be released publically.
 
-add language and accessibility support.
+Add language and accessibility support.
+
+Add scaling for train and train-stop markers with map zoom level
+
+Add current user location to map so they can see which trains/stops they are closest to 
 
 Switch to paid model to keep server running 24/7 instead of running out of free hours after 23 days of constant uptime.
 
