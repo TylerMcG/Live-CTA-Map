@@ -28,25 +28,30 @@ let port = process.env.PORT;
 if(port == null || port == "") {
   port = 3000;
 }
-
+//server shuts down 30 mins of inactivity so a call to the server is made every 20 to keep it active
 const serverRunning = schedule.scheduleJob("*/20 * * * *", function() {
   keepServerRunning();
 });
+
 //listening on port 3000 and heroku port
 app.listen(port, ()=> {
   console.log("server started");
 });
 
+//schedules all jobs for each train line where */(int) is how often in seconds the API call is made
+//red and blue lines run 24/7 so no need to schedule the job for specific hours, just make calls every 9 seconds
 const redLineJob = schedule.scheduleJob("*/9 * * * * *", function() {
   callCTAUpdateDB(0);
 });
 const blueLineJob = schedule.scheduleJob("*/9 * * * * *", function() {
   callCTAUpdateDB(1);
 });
+//schedule train job from 4:00am - 2:00am (the next day), at index 2 (4,0,2,0,2)
 const brownLineJob = schedule.scheduleJob("*/15 * * * * *", function() {
   scheduleTrainJob(4, 0, 2, 0, 2);
     // callCTAUpdateDB(2);
 });
+//schedule train job from 3:50am - 1:10am (the next day), at index 3 (3,50,1,10,3)
 const greenLineJob = schedule.scheduleJob("*/15 * * * * *", function() {
   scheduleTrainJob(3, 50, 1, 10, 3);
     // callCTAUpdateDB(3);
