@@ -16,8 +16,6 @@ import Utils.RecyclerViewAdapter;
 
 public class TrainsFragment extends Fragment {
 
-    private final String TAG = "TRAINFRAG";
-
     private final ArrayList<String> trainNames =
             new ArrayList<>(Arrays.asList("Red Line", "Blue Line", "Brown Line",
                     "Green Line", "Orange Line", "Pink Line", "Purple Line", "Yellow Line"));
@@ -32,7 +30,6 @@ public class TrainsFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,31 +38,6 @@ public class TrainsFragment extends Fragment {
         return view;
 
     }
-
-    @Override
-    public void onResume() {
-        Log.d(TAG, "resumed");
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        Log.d(TAG, "paused");
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        Log.d(TAG, "destroyed");
-        super.onDestroy();
-    }
-
-    @Override
-    public void onDetach() {
-        Log.d(TAG, "detatched");
-        super.onDetach();
-    }
-
     private void initRecylerView( View view) {
         try {
             RecyclerView recyclerView = view.findViewById(R.id.recyler_view);
