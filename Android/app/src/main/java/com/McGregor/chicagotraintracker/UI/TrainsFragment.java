@@ -16,12 +16,12 @@ import Utils.RecyclerViewAdapter;
 
 public class TrainsFragment extends Fragment {
 
-    private String TAG = "TRAINFRAG";
+    private final String TAG = "TRAINFRAG";
 
-    private ArrayList<String> trainNames =
+    private final ArrayList<String> trainNames =
             new ArrayList<>(Arrays.asList("Red Line", "Blue Line", "Brown Line",
                     "Green Line", "Orange Line", "Pink Line", "Purple Line", "Yellow Line"));
-    private ArrayList<Integer> trainIconResID =
+    private final ArrayList<Integer> trainIconResID =
             new ArrayList<>(Arrays.asList(R.drawable.ic_redline, R.drawable.ic_blueline,
                     R.drawable.ic_brownline, R.drawable.ic_greenline, R.drawable.ic_orangeline ,
                     R.drawable.ic_pinkline, R.drawable.ic_purpleline, R.drawable.ic_yellowline));
