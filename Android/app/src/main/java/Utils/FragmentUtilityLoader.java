@@ -7,10 +7,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.McGregor.chicagotraintracker.MainActivity;
-import com.McGregor.chicagotraintracker.UI.MapFragment;
-
-import java.util.Map;
 
 public class FragmentUtilityLoader {
     private static final String TAG = "FRAGMENT_LOADER";

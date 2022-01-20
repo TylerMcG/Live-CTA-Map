@@ -7,10 +7,8 @@ import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-
 import com.McGregor.chicagotraintracker.MainActivity;
 import com.McGregor.chicagotraintracker.R;
 
@@ -25,8 +23,6 @@ public class AlertFragment extends Fragment {
         super.onCreate(savedInstanceState);
         webViewClient = new WebViewClient();
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

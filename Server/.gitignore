@@ -14,3 +14,4 @@ firebaserc
 /firebase-debug.log
 /firebase.json
 /package-lock.json
+OLDServiceAccountKey.json

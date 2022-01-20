@@ -4,11 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-
 import androidx.core.content.ContextCompat;
 
 public class CreateBitmap {
-
 
     public static Bitmap createBitmap(Context context, int drawableId){
         Drawable drawable = ContextCompat.getDrawable(context, drawableId);

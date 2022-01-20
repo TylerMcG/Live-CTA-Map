@@ -1,16 +1,26 @@
 package com.McGregor.chicagotraintracker.UI;
 
+import android.Manifest;
+
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationManager;
+import android.nfc.Tag;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentResultListener;
+import androidx.navigation.NavController;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.McGregor.chicagotraintracker.MainActivity;
 import com.McGregor.chicagotraintracker.R;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -19,6 +29,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
@@ -29,7 +41,10 @@ import com.google.maps.android.data.kml.KmlLayer;
 import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.Executor;
+
 import data.Train;
+
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
     private  DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
@@ -45,6 +60,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private ArrayList<Marker> yellowLineMarkers;
     private ArrayList<Marker> brownLineMarkers;
     private ArrayList<Marker> greenLineMarkers;
+
     private static boolean isAddedToMap;
     private MarkerInfoWindowAdapter markerInfoWindowAdapter;
     private ValueEventListener redLineListener;
@@ -60,6 +76,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public MapFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -205,6 +222,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(CHICAGO_LATLNG, ZOOM_LEVEL));
     }
 
+
     private ValueEventListener initValueEventListener(ArrayList<Marker> markers, int resId) {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override
@@ -301,6 +319,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onPause() {
         Log.d(TAG, "ON PAUSE");
+        //Debugging tool, switching views to Alerts without removing stops
+        try {
+            stops.removeLayerFromMap();
+            isAddedToMap = false;
+        } catch (NullPointerException | Error e) {
+            Log.d(TAG, e.getMessage());
+        }
         super.onPause();
     }
 }

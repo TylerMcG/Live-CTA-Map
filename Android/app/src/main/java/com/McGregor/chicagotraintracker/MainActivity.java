@@ -14,14 +14,14 @@ import Utils.FragmentUtilityLoader;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TRAIN_FRAG_TAG = "TRAIN_FRAG_TAG";
-    public static final String HOME_FRAG_TAG = "HOME_FRAG_TAG";
+    private static final String HOME_FRAG_TAG = "HOME_FRAG_TAG";
     private static final String TAG = "MainActivity";
     private static final String ALERT_FRAG_TAG = "ALERT_FRAG_TAG";;
     private FirebaseAuth mAuth;
     public BottomNavigationView bottomNavigationView;
-    public static Fragment mapFrag;
+    private MapFragment mapFrag;
     private Fragment alertFrag;
-    public Fragment trainsFrag;
+    private Fragment trainsFrag;
     FirebaseUser currentUser;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,28 +59,25 @@ public class MainActivity extends AppCompatActivity {
     private final NavigationBarView.OnItemSelectedListener  navigationListener = menuItem -> {
         switch (menuItem.getItemId()) {
             case R.id.mapFragment:
+                mapFrag.onResume();
                 if(alertFrag.isVisible()) {
+                    mapFrag.onResume();
                     getSupportFragmentManager()
                             .beginTransaction()
                             .setReorderingAllowed(true).
                             hide(alertFrag)
                             .show(mapFrag)
                             .commit();
-                    if(trainsFrag.isHidden() && !trainsFrag.isDetached()) {
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .setReorderingAllowed(true)
-                                .show(trainsFrag).commit();
-                    }
                 }
                 return true;
             case R.id.trainsFragment:
                 FragmentUtilityLoader.toggleFragmentVisibility(this, trainsFrag, R.id.fragmentContainerView, TRAIN_FRAG_TAG);
                 return true;
             case R.id.stations:
-                MapFragment.toggleStops();
+                mapFrag.toggleStops();
                 return true;
             case R.id.alertFragment:
+                mapFrag.onPause();
                 if (!alertFrag.isAdded()) {
                     getSupportFragmentManager()
                             .beginTransaction()
