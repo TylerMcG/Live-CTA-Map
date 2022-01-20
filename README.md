@@ -45,7 +45,7 @@ this could be set to .read: = true and .write = true for testing purposes.
 
 **Updated UI:**
 
-The Bottom Navigation bar toggled between two views: a map view and a webpage view. The map view shows a map with all the train routes in color, and optionally displays trains for each route and all train stops with a button press The show trains button loads a fragment on top of the map with a transparent background and has a toggle button for each train line to toggle between add/show and remove/removefor the database listener/UI component. When the button is pressed it toggles between the two states mentioned. Show stops button toggle displays all the L train stops from a KML file on the map. The Alerts button loads a webview going to the CTA website with alerts for down trains. The whole CTA website and links from their page can be accessed through this web view.
+The Bottom Navigation bar toggles between two views: a map view and a webpage view. The map view shows a map with all the train routes in color, and optionally displays trains for each route and all train stops with a press of a button. The show trains button loads a fragment on top of the map with a transparent background and has a toggle button for each train line to toggle between add/show and remove/removefor the database listener/UI component. When the button is pressed it toggles between the two states mentioned. Show stops button toggle displays all the L train stops from a KML file on the map. The Alerts button loads a webview going to the CTA website with alerts for down trains. The whole CTA website and links from their page can be accessed through this web view.
 
 **Updated Server:**
 
