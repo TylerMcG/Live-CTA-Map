@@ -71,6 +71,9 @@ Add language and accessibility support.
 
 Add scaling for train and train-stop markers with map zoom level
 
+Implement onPause methods for MapFragment and AlertFragment to stop network traffic and valueEventListeners when in the background, and resume listeners when
+calling onResume(); 
+
 ~~Add current user location to map so they can see which trains/stops they are closest to~~ 
 
 Switch to paid model to keep server running 24/7 instead of running out of free hours after 23 days of constant uptime.
