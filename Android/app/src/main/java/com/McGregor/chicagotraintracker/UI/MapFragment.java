@@ -114,23 +114,24 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
     /**
-     * Updates the map's UI settings based on whether the user has granted location permission.
+     * Shows the user's location on the map if permission is granted
      */
     @SuppressLint("MissingPermission")
-    private void updateLocationUI() {
+    private void showUserLocation() {
         if (map == null) {
             Log.e(TAG , "Null map");
             return;
         }
         try {
+            //hide the button since custom button was created
+            map.getUiSettings().setMyLocationButtonEnabled(false);
             if (locationPermissionGranted) {
                 Log.e(TAG , "granted");
                 map.setMyLocationEnabled(true);
-                map.getUiSettings().setMyLocationButtonEnabled(false);
+
             } else {
                 Log.d(TAG, "not granted");
                 map.setMyLocationEnabled(false);
-                map.getUiSettings().setMyLocationButtonEnabled(false);
                 getLocationPermission();
             }
         } catch (SecurityException | Error e)  {
@@ -249,7 +250,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             stops = new KmlLayer(map, R.raw.cta_stops, requireContext());
             lines.addLayerToMap();
             markerInfoWindowAdapter = new MarkerInfoWindowAdapter(getContext());
-            map.setInfoWindowAdapter(markerInfoWindowAdapter);
             stops = new KmlLayer(map, R.raw.cta_stops, requireContext());
             // Get the button view
         } catch (XmlPullParserException | IOException | Error e) {
@@ -261,22 +261,35 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         // Prompt the user for permission.
         getLocationPermission();
         // Turn on the My Location layer and the related control on the map.
-        updateLocationUI();
+        showUserLocation();
         // Get the current location of the device and set the position of the map.
 
     }
 
+    @SuppressLint("MissingPermission")
     private void toggleTracking(ImageButton locationButton) {
+
         Log.d(TAG, String.valueOf(isTrackingLocation));
-        if (!isTrackingLocation) {
-            locationButton.setImageResource(R.drawable.ic_location_on);
-            isTrackingLocation = true;
-            updateUserLocationOnMap();
+        try {
+            if (map == null) {
+                Log.e(TAG , "Null map");
+                return;
+            }
+            if (!isTrackingLocation && locationPermissionGranted) {
+                locationButton.setImageResource(R.drawable.ic_location_on);
+                isTrackingLocation = true;
+//                map.setMyLocationEnabled(true); //can remove updateUI method and move method sig to here
+                updateUserLocationOnMap();
+            }
+            else {
+                locationButton.setImageResource(R.drawable.ic_location_off);
+                isTrackingLocation = false;
+//                map.setMyLocationEnabled(false);
+                locationManager.removeUpdates(locationListener);
+            }
         }
-        else {
-            locationButton.setImageResource(R.drawable.ic_location_off);
-            isTrackingLocation = false;
-            locationManager.removeUpdates(locationListener);
+        catch (SecurityException | Error e)  {
+            Log.e(TAG + " Exception: %s", e.getMessage());
         }
     }
 
