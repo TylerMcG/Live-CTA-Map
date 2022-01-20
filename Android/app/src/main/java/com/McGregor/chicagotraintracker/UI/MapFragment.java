@@ -1,8 +1,14 @@
 package com.McGregor.chicagotraintracker.UI;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.LocationManager;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +34,7 @@ import com.google.maps.android.data.kml.KmlLayer;
 import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import data.Train;
 
 
@@ -35,8 +42,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private  final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
     private static final String TAG = "MAP_FRAG";
     private GoogleMap map;
-    float ZOOM_LEVEL = 11.1f;
-    LatLng CHICAGO_LATLNG = new LatLng(41.86638281894, -87.70);
+    private final float LOCATION_ZOOM_LEVEL = 15.0f;
+
+    private final LatLng CHICAGO_LATLNG = new LatLng(41.86638281894, -87.70);
     private ArrayList<Marker> redLineMarkers;
     private ArrayList<Marker> blueLineMarkers;
     private ArrayList<Marker> pinkLineMarkers;
@@ -45,7 +53,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private ArrayList<Marker> yellowLineMarkers;
     private ArrayList<Marker> brownLineMarkers;
     private ArrayList<Marker> greenLineMarkers;
-
     private static boolean isAddedToMap;
     private MarkerInfoWindowAdapter markerInfoWindowAdapter;
     private ValueEventListener redLineListener;
@@ -57,9 +64,72 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private ValueEventListener purpleLineListener;
     private ValueEventListener yellowLineListener;
     private  static KmlLayer stops;
-
+    private boolean locationPermissionGranted;
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     public MapFragment() {
         // Required empty public constructor
+    }
+    /**
+     * Prompts the user for permission to use the device location.
+     */
+    private void getLocationPermission() {
+        /*
+         * Request location permission, so that we can get the location of the
+         * device. The result of the permission request is handled by a callback,
+         * onRequestPermissionsResult.
+         */
+        if (ContextCompat.checkSelfPermission(requireContext().getApplicationContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            locationPermissionGranted = true;
+        } else {
+            ActivityCompat.requestPermissions(requireActivity(),
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+        }
+    }
+    @SuppressLint("MissingPermission")
+    private void updateUserLocationOnMap() {
+        /*
+         * Get the best and most recent location of the device, which may be null in rare
+         * cases when a location is not available.
+         */
+        try {
+            if (locationPermissionGranted) {
+                LocationManager locationManager = ((LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE));
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, location -> {
+                    LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM_LEVEL));
+                });
+            }
+
+        } catch (SecurityException | NullPointerException e)  {
+            Log.e("Exception: %s", e.getMessage(), e);
+        }
+    }
+    /**
+     * Updates the map's UI settings based on whether the user has granted location permission.
+     */
+    @SuppressLint("MissingPermission")
+    private void updateLocationUI() {
+        if (map == null) {
+            Log.e(TAG , "Null map");
+            return;
+        }
+        try {
+            if (locationPermissionGranted) {
+                Log.e(TAG , "granted");
+                map.setMyLocationEnabled(true);
+                map.getUiSettings().setMyLocationButtonEnabled(true);
+            } else {
+                Log.d(TAG, "not granted");
+                map.setMyLocationEnabled(false);
+                map.getUiSettings().setMyLocationButtonEnabled(false);
+                getLocationPermission();
+            }
+        } catch (SecurityException | Error e)  {
+            Log.e(TAG + " Exception: %s", e.getMessage());
+        }
     }
 
     @Override
@@ -70,10 +140,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Log.d(TAG, result.toString());
                 updateTrainFromBundle(result);
             });
-
         } catch (Error e) {
             Log.d(TAG, e.getMessage());
         }
+        //initialize arraylist of markers for each trainline
         redLineMarkers = new ArrayList<>();
         blueLineMarkers = new ArrayList<>();
         brownLineMarkers = new ArrayList<>();
@@ -82,7 +152,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         purpleLineMarkers = new ArrayList<>();
         pinkLineMarkers = new ArrayList<>();
         yellowLineMarkers = new ArrayList<>();
-
+        //initialize listeners
         redLineListener = initValueEventListener(redLineMarkers, R.drawable.ic_redline);
         blueLineListener =  initValueEventListener(blueLineMarkers, R.drawable.ic_blueline);
         brownLineListener = initValueEventListener(brownLineMarkers, R.drawable.ic_brownline);
@@ -151,6 +221,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         mainActivity.bottomNavigationView.findViewById(R.id.stations).setEnabled(true);
         if(mapFragment != null) {
             mapFragment.getMapAsync(this);
+
+            updateUserLocationOnMap();
         }
         return view;
     }
@@ -166,10 +238,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             markerInfoWindowAdapter = new MarkerInfoWindowAdapter(getContext());
             map.setInfoWindowAdapter(markerInfoWindowAdapter);
             stops = new KmlLayer(map, R.raw.cta_stops, requireContext());
+
         } catch (XmlPullParserException | IOException | Error e) {
             e.printStackTrace();
         }
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(CHICAGO_LATLNG, ZOOM_LEVEL));
+        //move camera
+        float CHIAGO_ZOOM_LEVEL = 11.1f;
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(CHICAGO_LATLNG, CHIAGO_ZOOM_LEVEL));
+        // Prompt the user for permission.
+        getLocationPermission();
+        // Turn on the My Location layer and the related control on the map.
+        updateLocationUI();
+        // Get the current location of the device and set the position of the map.
+        updateUserLocationOnMap();
     }
 
 
