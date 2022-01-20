@@ -17,20 +17,20 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
     private static final String TAG = "RecylcerViewAdapater";
-    private ArrayList<String> trainNames;
-    private ArrayList<Integer> trainResId;
-    private Fragment fragment;
+    private final ArrayList<String> trainNames;
+    private final ArrayList<Integer> trainResId;
+    private final Fragment fragment;
     public RecyclerViewAdapter(Fragment fragment, ArrayList<String> trainNames, ArrayList<Integer> trainResId) {
         this.trainNames = trainNames;
         this.trainResId = trainResId;
         this.fragment = fragment;
     }
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View   view = LayoutInflater.from(parent.getContext()).inflate(R.layout.train_list_items, parent, false);
-        ViewHolder viewHolder = new ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -41,15 +41,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             holder.checkBox.setOnClickListener(view -> {
                 boolean checked = ((CheckBox) view).isChecked();
                 Bundle args = new Bundle();
-                if (checked) {
-                    args.putBoolean(trainNames.get(position), true);
-                }
-                else {
-                    args.putBoolean(trainNames.get(position), false);
-                }
+                args.putBoolean(trainNames.get(position), checked);
                 fragment.getParentFragmentManager().setFragmentResult("requestKey", args);
-
-
             });
         } catch (IndexOutOfBoundsException | Error e) {
             Log.d(TAG, e.getMessage());
