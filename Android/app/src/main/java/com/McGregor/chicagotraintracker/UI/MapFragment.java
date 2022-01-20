@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
@@ -14,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
 import com.McGregor.chicagotraintracker.MainActivity;
 import com.McGregor.chicagotraintracker.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -42,8 +46,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private  final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
     private static final String TAG = "MAP_FRAG";
     private GoogleMap map;
-    private final float LOCATION_ZOOM_LEVEL = 15.0f;
-
     private final LatLng CHICAGO_LATLNG = new LatLng(41.86638281894, -87.70);
     private ArrayList<Marker> redLineMarkers;
     private ArrayList<Marker> blueLineMarkers;
@@ -53,7 +55,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private ArrayList<Marker> yellowLineMarkers;
     private ArrayList<Marker> brownLineMarkers;
     private ArrayList<Marker> greenLineMarkers;
-    private static boolean isAddedToMap;
+    private boolean isAddedToMap;
+    private boolean isTrackingLocation;
     private MarkerInfoWindowAdapter markerInfoWindowAdapter;
     private ValueEventListener redLineListener;
     private ValueEventListener blueLineListener;
@@ -64,8 +67,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private ValueEventListener purpleLineListener;
     private ValueEventListener yellowLineListener;
     private  static KmlLayer stops;
+    private LocationManager locationManager;
     private boolean locationPermissionGranted;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
+    private ImageButton locationButton;
     public MapFragment() {
         // Required empty public constructor
     }
@@ -88,21 +93,22 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
         }
     }
+    private final LocationListener locationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(@NonNull Location location) {
+            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+            float LOCATION_ZOOM_LEVEL = 15.0f;
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM_LEVEL));
+        }
+    };
+
     @SuppressLint("MissingPermission")
     private void updateUserLocationOnMap() {
-        /*
-         * Get the best and most recent location of the device, which may be null in rare
-         * cases when a location is not available.
-         */
         try {
             if (locationPermissionGranted) {
-                LocationManager locationManager = ((LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE));
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, location -> {
-                    LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM_LEVEL));
-                });
+                locationManager = ((LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE));
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
             }
-
         } catch (SecurityException | NullPointerException e)  {
             Log.e("Exception: %s", e.getMessage(), e);
         }
@@ -120,7 +126,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             if (locationPermissionGranted) {
                 Log.e(TAG , "granted");
                 map.setMyLocationEnabled(true);
-                map.getUiSettings().setMyLocationButtonEnabled(true);
+                map.getUiSettings().setMyLocationButtonEnabled(false);
             } else {
                 Log.d(TAG, "not granted");
                 map.setMyLocationEnabled(false);
@@ -217,12 +223,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         MainActivity mainActivity = (MainActivity) getActivity();
         assert mainActivity != null;
+        locationButton = view.findViewById(R.id.locationButton);
         mainActivity.bottomNavigationView.findViewById(R.id.trainsFragment).setEnabled(true);
         mainActivity.bottomNavigationView.findViewById(R.id.stations).setEnabled(true);
         if(mapFragment != null) {
             mapFragment.getMapAsync(this);
+            locationButton.setOnClickListener(buttonView -> {
+                // button is pressed, toggle variable and view
+                if (buttonView.isPressed()) {
+                    toggleTracking(locationButton);
+                }
+            });
 
-            updateUserLocationOnMap();
+
         }
         return view;
     }
@@ -238,7 +251,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             markerInfoWindowAdapter = new MarkerInfoWindowAdapter(getContext());
             map.setInfoWindowAdapter(markerInfoWindowAdapter);
             stops = new KmlLayer(map, R.raw.cta_stops, requireContext());
-
+            // Get the button view
         } catch (XmlPullParserException | IOException | Error e) {
             e.printStackTrace();
         }
@@ -250,7 +263,21 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         // Turn on the My Location layer and the related control on the map.
         updateLocationUI();
         // Get the current location of the device and set the position of the map.
-        updateUserLocationOnMap();
+
+    }
+
+    private void toggleTracking(ImageButton locationButton) {
+        Log.d(TAG, String.valueOf(isTrackingLocation));
+        if (!isTrackingLocation) {
+            locationButton.setImageResource(R.drawable.ic_location_on);
+            isTrackingLocation = true;
+            updateUserLocationOnMap();
+        }
+        else {
+            locationButton.setImageResource(R.drawable.ic_location_off);
+            isTrackingLocation = false;
+            locationManager.removeUpdates(locationListener);
+        }
     }
 
 
