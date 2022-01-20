@@ -1,4 +1,5 @@
 package com.McGregor.chicagotraintracker.UI;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,22 +13,25 @@ import androidx.fragment.app.Fragment;
 import com.McGregor.chicagotraintracker.MainActivity;
 import com.McGregor.chicagotraintracker.R;
 
+import java.util.Objects;
+
 
 public class AlertFragment extends Fragment {
     private static final String TAG = "ALERT_FRAG";
     private Bundle webViewState;
     private WebViewClient webViewClient;
-    public static WebView webView;
+    private WebView webView;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         webViewClient = new WebViewClient();
     }
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         MainActivity mainActivity = (MainActivity) getActivity();
-        mainActivity.bottomNavigationView.findViewById(R.id.trainsFragment).setEnabled(false);
+        Objects.requireNonNull(mainActivity).bottomNavigationView.findViewById(R.id.trainsFragment).setEnabled(false);
         mainActivity.bottomNavigationView.findViewById(R.id.stations).setEnabled(false);
         View view = inflater.inflate(R.layout.fragment_alert, container, false);
         webView = view.findViewById(R.id.webview);
@@ -45,13 +49,6 @@ public class AlertFragment extends Fragment {
         return view;
 
     }
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        webView.saveState(outState);
-    }
-
-
 
     @Override
     public void onResume() {
@@ -76,4 +73,11 @@ public class AlertFragment extends Fragment {
         super.onDetach();
     }
 
+    public void handleGoBack(){
+        if(webView != null && webView.canGoBack()) {
+            webView.goBack();
+        }
+    }
+
 }
+

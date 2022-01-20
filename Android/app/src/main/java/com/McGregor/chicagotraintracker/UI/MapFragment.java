@@ -249,7 +249,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    public static void toggleStops() {
+    public void toggleStops() {
         try {
             if(stops != null) {
                 if(!isAddedToMap) {

@@ -1,6 +1,8 @@
 package com.McGregor.chicagotraintracker;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import com.McGregor.chicagotraintracker.UI.AlertFragment;
@@ -16,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TRAIN_FRAG_TAG = "TRAIN_FRAG_TAG";
     private static final String HOME_FRAG_TAG = "HOME_FRAG_TAG";
     private static final String TAG = "MainActivity";
-    private static final String ALERT_FRAG_TAG = "ALERT_FRAG_TAG";;
+    private static final String ALERT_FRAG_TAG = "ALERT_FRAG_TAG";
     private FirebaseAuth mAuth;
     public BottomNavigationView bottomNavigationView;
     private MapFragment mapFrag;
@@ -43,9 +45,9 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "Signed in Anon");
                     currentUser = mAuth.getCurrentUser();
                 } else {
-                    Log.d(TAG, task.getException().toString());
-                    //load bad fragment (to be created) with view to contact admin
-                    // since could not sign in
+                    if(task.getException() != null) {
+                        Log.d(TAG, task.getException().toString());
+                    }
                 }
             });
         }
@@ -56,19 +58,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
     //method needs to be cleaned up and abstracted to FragmentUtilityLoader
+    @SuppressLint("NonConstantResourceId")
     private final NavigationBarView.OnItemSelectedListener  navigationListener = menuItem -> {
         switch (menuItem.getItemId()) {
             case R.id.mapFragment:
                 mapFrag.onResume();
-                if(alertFrag.isVisible()) {
-                    mapFrag.onResume();
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .setReorderingAllowed(true).
-                            hide(alertFrag)
-                            .show(mapFrag)
-                            .commit();
-                }
+                FragmentUtilityLoader.swapFragments(this, mapFrag, alertFrag);
                 return true;
             case R.id.trainsFragment:
                 FragmentUtilityLoader.toggleFragmentVisibility(this, trainsFrag, R.id.fragmentContainerView, TRAIN_FRAG_TAG);
@@ -79,28 +74,10 @@ public class MainActivity extends AppCompatActivity {
             case R.id.alertFragment:
                 mapFrag.onPause();
                 if (!alertFrag.isAdded()) {
-                    getSupportFragmentManager()
-                            .beginTransaction()
-                            .setReorderingAllowed(true).hide(mapFrag)
-                            .add(R.id.fragmentContainerView, alertFrag, ALERT_FRAG_TAG)
-                            .commit();
+                    FragmentUtilityLoader.addAndSwapFragments(this, alertFrag, mapFrag);
                 }
-                else if (alertFrag.isAdded() && mapFrag.isVisible()) {
-                    if(trainsFrag.isVisible()) {
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .setReorderingAllowed(true).hide(mapFrag).hide(trainsFrag)
-                                .show(alertFrag)
-                                .commit();
-                    }
-                    else {
-                        getSupportFragmentManager()
-                                .beginTransaction()
-                                .setReorderingAllowed(true)
-                                .hide(mapFrag)
-                                .show(alertFrag)
-                                .commit();
-                    }
+                else if (mapFrag.isVisible()) {
+                   FragmentUtilityLoader.swapFragments(this, mapFrag, alertFrag, trainsFrag);
                 }
                 return true;
         }
@@ -110,14 +87,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed(){
         Fragment alertTestFrag = getSupportFragmentManager().findFragmentByTag(ALERT_FRAG_TAG);
-        if(alertTestFrag!= null) {
-            Log.d(TAG, alertTestFrag.getClass().getName());
-        }
         if (alertTestFrag instanceof AlertFragment) {
-            if (AlertFragment.webView.canGoBack()) {
-                AlertFragment.webView.goBack();
-//                Log.d(TAG, alertTestFrag.getClass().getName() + "going back");
-            }
+            ((AlertFragment) alertTestFrag).handleGoBack();
         }
     }
 }
