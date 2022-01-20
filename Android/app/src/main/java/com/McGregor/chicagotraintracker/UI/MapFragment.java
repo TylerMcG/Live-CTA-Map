@@ -1,26 +1,15 @@
 package com.McGregor.chicagotraintracker.UI;
 
-import android.Manifest;
-
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.location.Location;
-import android.location.LocationManager;
-import android.nfc.Tag;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.navigation.NavController;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.McGregor.chicagotraintracker.MainActivity;
 import com.McGregor.chicagotraintracker.R;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,8 +18,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
@@ -41,14 +28,12 @@ import com.google.maps.android.data.kml.KmlLayer;
 import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.Executor;
-
 import data.Train;
 
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
-    private  DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-    private static final String TAG = "MFERROR";
+    private  final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
+    private static final String TAG = "MAP_FRAG";
     private GoogleMap map;
     float ZOOM_LEVEL = 11.1f;
     LatLng CHICAGO_LATLNG = new LatLng(41.86638281894, -87.70);
@@ -71,7 +56,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private ValueEventListener pinkLineListener;
     private ValueEventListener purpleLineListener;
     private ValueEventListener yellowLineListener;
-    private static KmlLayer lines;
     private  static KmlLayer stops;
     public MapFragment() {
         // Required empty public constructor
@@ -81,14 +65,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = this.getArguments();
         try {
-            getParentFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
-                @Override
-                public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                    Log.d(TAG, result.toString());
-                    updateTrainFromBundle(result);
-                }
+            getParentFragmentManager().setFragmentResultListener("requestKey", this, (requestKey, result) -> {
+                Log.d(TAG, result.toString());
+                updateTrainFromBundle(result);
             });
 
         } catch (Error e) {
@@ -113,73 +93,43 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         yellowLineListener = initValueEventListener(yellowLineMarkers, R.drawable.ic_yellowline);
     }
 
+    private void handleUpdateTrain(boolean isChecked, String trainLine,
+                               ArrayList<Marker> trainMarkers, ValueEventListener trainListener) {
+        if (isChecked) {
+            updateTrainDataToScreen(trainLine, trainListener);
+        } else {
+            removeTrainMarkers(trainMarkers);
+            dbRef.child(trainLine).removeEventListener(trainListener);
+        }
+    }
+
     private void updateTrainFromBundle(Bundle bundle) {
         for (String key: bundle.keySet()) {
             boolean isChecked = bundle.getBoolean(key);
             switch (key) {
                 case "Red Line":
-                    if (isChecked) {
-                        updateTrainDataToScreen("Red Line", redLineListener);
-                    } else {
-                        removeTrainMarkers(redLineMarkers);
-                        dbRef.child(key).removeEventListener(redLineListener);
-                    }
+                   handleUpdateTrain(isChecked, key, redLineMarkers, redLineListener);
                     break;
                 case "Blue Line":
-                    if (isChecked) {
-                        updateTrainDataToScreen("Blue Line", blueLineListener);
-                    } else {
-                        removeTrainMarkers(blueLineMarkers);
-                        dbRef.child(key).removeEventListener(blueLineListener);
-                    }
+                  handleUpdateTrain(isChecked, key, blueLineMarkers, blueLineListener);
                     break;
                 case "Brown Line":
-                    if (isChecked) {
-                        updateTrainDataToScreen("Brown Line", brownLineListener);
-                    } else {
-                        removeTrainMarkers(brownLineMarkers);
-                        dbRef.child(key).removeEventListener(brownLineListener);
-                    }
+                    handleUpdateTrain(isChecked, key, brownLineMarkers, brownLineListener);
                     break;
                 case "Green Line":
-                    if (isChecked) {
-                        updateTrainDataToScreen("Green Line", greenLineListener);
-                    } else {
-                        removeTrainMarkers(greenLineMarkers);
-                        dbRef.child(key).removeEventListener(greenLineListener);
-                    }
+                    handleUpdateTrain(isChecked, key, greenLineMarkers, greenLineListener);
                     break;
                 case "Orange Line":
-                    if (isChecked) {
-                        updateTrainDataToScreen("Orange Line", orangeLineListener);
-                    } else {
-                        removeTrainMarkers(orangeLineMarkers);
-                        dbRef.child(key).removeEventListener(orangeLineListener);
-                    }
+                    handleUpdateTrain(isChecked, key, orangeLineMarkers, orangeLineListener);
                     break;
                 case "Pink Line":
-                    if (isChecked) {
-                        updateTrainDataToScreen("Pink Line", pinkLineListener);
-                    } else {
-                        removeTrainMarkers(pinkLineMarkers);
-                        dbRef.child(key).removeEventListener(pinkLineListener);
-                    }
+                  handleUpdateTrain(isChecked, key, pinkLineMarkers, pinkLineListener);
                     break;
                 case "Purple Line":
-                    if (isChecked) {
-                        updateTrainDataToScreen("Purple Line", purpleLineListener);
-                    } else {
-                        removeTrainMarkers(purpleLineMarkers);
-                        dbRef.child(key).removeEventListener(purpleLineListener);
-                    }
+                  handleUpdateTrain(isChecked, key, purpleLineMarkers, purpleLineListener);
                     break;
                 case "Yellow Line":
-                    if (isChecked) {
-                        updateTrainDataToScreen("Yellow Line", yellowLineListener);
-                    } else {
-                        removeTrainMarkers(yellowLineMarkers);
-                        dbRef.child(key).removeEventListener(yellowLineListener);
-                    }
+                  handleUpdateTrain(isChecked, key, yellowLineMarkers, yellowLineListener);
                     break;
                 default:
                     Log.d(TAG, "Default switch ERROR");
@@ -196,12 +146,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         //load map fragment
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         MainActivity mainActivity = (MainActivity) getActivity();
+        assert mainActivity != null;
         mainActivity.bottomNavigationView.findViewById(R.id.trainsFragment).setEnabled(true);
         mainActivity.bottomNavigationView.findViewById(R.id.stations).setEnabled(true);
         if(mapFragment != null) {
             mapFragment.getMapAsync(this);
         }
-
         return view;
     }
 
@@ -210,7 +160,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         Log.d(TAG, "MAP READY");
         map = googleMap;
         try { //add raw kml data to overlay train lines on map
-            lines = new KmlLayer(map, R.raw.cta_rail_layer, requireContext());
+            KmlLayer lines = new KmlLayer(map, R.raw.cta_rail_layer, requireContext());
             stops = new KmlLayer(map, R.raw.cta_stops, requireContext());
             lines.addLayerToMap();
             markerInfoWindowAdapter = new MarkerInfoWindowAdapter(getContext());
@@ -224,7 +174,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
     private ValueEventListener initValueEventListener(ArrayList<Marker> markers, int resId) {
-        ValueEventListener valueEventListener = new ValueEventListener() {
+        return new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ArrayList<Train> trainData = new ArrayList<>();
@@ -235,12 +185,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     for (DataSnapshot ds : snapshot.getChildren()) {
                         Train train = ds.getValue(Train.class);
                         trainData.add(train);
-                        Log.d(TAG, train.toString());
+                        if(train != null ) {
+                            Log.d(TAG, train.toString());
+                        }
                     }
-                    addTrainMarkers(trainData, resId, markers);
+                    addTrainMarkers(trainData,
+                            resId,
+                            markers);
 
-                } catch(DatabaseException e) {
-                    Log.d(TAG , e.getLocalizedMessage());
+                } catch(DatabaseException | NullPointerException | Error e) {
+                    Log.d(TAG , e.getMessage());
                 } finally { //clear trainData to hopefully send it to GC
                     trainData.clear();
                 }
@@ -250,7 +204,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 Log.d(TAG, error.getMessage());
             }
         };
-        return valueEventListener;
     }
 
     private void updateTrainDataToScreen(String trainLine, ValueEventListener eventListener){
@@ -299,11 +252,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public static void toggleStops() {
         try {
             if(stops != null) {
-                if(isAddedToMap == false) {
+                if(!isAddedToMap) {
                     Log.d(TAG, "stops added");
                     stops.addLayerToMap();
                     isAddedToMap = true;
-                    return;
                 }
                 else {
                     stops.removeLayerFromMap();
@@ -319,13 +271,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onPause() {
         Log.d(TAG, "ON PAUSE");
-        //Debugging tool, switching views to Alerts without removing stops
-        try {
-            stops.removeLayerFromMap();
-            isAddedToMap = false;
-        } catch (NullPointerException | Error e) {
-            Log.d(TAG, e.getMessage());
-        }
         super.onPause();
     }
 }
