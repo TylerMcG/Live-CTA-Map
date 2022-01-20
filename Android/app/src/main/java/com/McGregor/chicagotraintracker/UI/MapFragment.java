@@ -57,10 +57,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private ValueEventListener purpleLineListener;
     private ValueEventListener yellowLineListener;
     private  static KmlLayer stops;
+
     public MapFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -270,6 +270,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onPause() {
+        //need to remove listeners to free up resources
         Log.d(TAG, "ON PAUSE");
         super.onPause();
     }
