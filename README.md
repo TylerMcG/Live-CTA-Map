@@ -14,7 +14,7 @@ Another button toggle will display all the L train stops on the map, which when 
 and ride, and if it is ADA accesible in a marker window. By clicking on a stop, you can get directions to it, provided by the Google maps application. 
 An alerts button opens a webview client that links to the CTA 'L' Systems alert, though the entire CTA website and links from their webpage can be accessed. 
 
-# HOW TO USE
+## HOW TO USE
 **Requirements:** 
 A google firebase project will need to be created, and a ServiceAccountKey.json will need to be included in the Server directory in order to access the Firebase database
 from the nodejs server. the firebase database url can be included in the .env file in the Server directory, or replace process.env.DATABASE_URL with the firebase database 
@@ -41,7 +41,7 @@ implement your own signin method in the android application and change the rules
   }
 }
 this could be set to .read: = true and .write = true for testing purposes. 
-# Changes from School Project
+### Changes from School Project
 
 **Updated UI:**
 
@@ -61,7 +61,7 @@ Job Scheduler currently makes self request to server to keep it active 24/7.
 
 Added a method to remove trains no longer active from the database if they have not been written in the previous 20 seconds.
 
-# **Working On**
+### **Working On**
 
 **Updating UI and Features:** color schemes, adding dark mode, adjusting transparency in show trains frame, adjust text fields, fonts, and layout in marker window adapter
 
@@ -71,7 +71,10 @@ Add language and accessibility support.
 
 Add scaling for train and train-stop markers with map zoom level
 
-Add current user location to map so they can see which trains/stops they are closest to 
+Implement onPause methods for MapFragment and AlertFragment to stop network traffic and valueEventListeners when in the background, and resume listeners when
+calling onResume(); 
+
+~~Add current user location to map so they can see which trains/stops they are closest to~~ 
 
 Switch to paid model to keep server running 24/7 instead of running out of free hours after 23 days of constant uptime.
 
