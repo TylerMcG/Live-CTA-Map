@@ -1,4 +1,4 @@
-# Chicago L Train Tracker Full Stack Project
+# Chicago Train Tracker Full Stack Project
 
 
 **ABOUT THIS PROJECT**
