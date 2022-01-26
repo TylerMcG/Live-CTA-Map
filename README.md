@@ -1,4 +1,4 @@
-# Chicago Transit Authority L Train Live Map Android Application
+# Chicago L Train Tracker Full Stack Project
 
 
 **ABOUT THIS PROJECT**
