@@ -1,398 +1,381 @@
-package com.McGregor.chicagotraintracker.UI;
+package com.McGregor.chicagotraintracker.UI
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.firebase.database.FirebaseDatabase
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import java.util.ArrayList
+import com.google.firebase.database.ValueEventListener
+import android.location.LocationManager
+import android.widget.ImageButton
+import androidx.core.content.ContextCompat
+import android.content.pm.PackageManager
+import androidx.core.app.ActivityCompat
+import com.google.android.gms.maps.CameraUpdateFactory
+import android.annotation.SuppressLint
+import java.lang.SecurityException
+import android.util.Log
+import java.lang.NullPointerException
+import android.os.Bundle
+import com.McGregor.chicagotraintracker.R
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import com.google.android.gms.maps.SupportMapFragment
+import com.McGregor.chicagotraintracker.MainActivity
+import com.google.maps.android.data.kml.KmlLayer
+import org.xmlpull.v1.XmlPullParserException
+import java.io.IOException
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseException
+import com.google.firebase.database.DatabaseError
+import Utils.CreateBitmap
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
+import android.Manifest
+import android.content.Context
+import android.location.LocationListener
+import android.view.View
+import androidx.fragment.app.Fragment
+import com.google.android.gms.maps.model.Marker
+import data.Train
+import java.lang.Error
 
-import com.McGregor.chicagotraintracker.MainActivity;
-import com.McGregor.chicagotraintracker.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseException;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.maps.android.data.kml.KmlLayer;
-import org.xmlpull.v1.XmlPullParserException;
-import java.io.IOException;
-import java.util.ArrayList;
-
-import data.Train;
-
-
-public class MapFragment extends Fragment implements OnMapReadyCallback {
-    private  final DatabaseReference dbRef = FirebaseDatabase.getInstance().getReference();
-    private static final String TAG = "MAP_FRAG";
-    private GoogleMap map;
-    private final LatLng CHICAGO_LATLNG = new LatLng(41.86638281894, -87.70);
-    private ArrayList<Marker> redLineMarkers;
-    private ArrayList<Marker> blueLineMarkers;
-    private ArrayList<Marker> pinkLineMarkers;
-    private ArrayList<Marker> purpleLineMarkers;
-    private ArrayList<Marker> orangeLineMarkers;
-    private ArrayList<Marker> yellowLineMarkers;
-    private ArrayList<Marker> brownLineMarkers;
-    private ArrayList<Marker> greenLineMarkers;
-    private boolean isAddedToMap;
-    private boolean isTrackingLocation;
-    private MarkerInfoWindowAdapter markerInfoWindowAdapter;
-    private ValueEventListener redLineListener;
-    private ValueEventListener blueLineListener;
-    private ValueEventListener brownLineListener;
-    private ValueEventListener greenLineListener;
-    private ValueEventListener orangeLineListener;
-    private ValueEventListener pinkLineListener;
-    private ValueEventListener purpleLineListener;
-    private ValueEventListener yellowLineListener;
-    private  static KmlLayer stops;
-    private LocationManager locationManager;
-    private boolean locationPermissionGranted;
-    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
-    private ImageButton locationButton;
-    public MapFragment() {
-        // Required empty public constructor
-    }
-    /**
-     * Prompts the user for permission to use the device location.
-     */
-    private void getLocationPermission() {
-        /*
+class MapFragment : Fragment(), OnMapReadyCallback {
+    private val dbRef = FirebaseDatabase.getInstance().reference
+    private var map: GoogleMap? = null
+    private val CHICAGO_LATLNG = LatLng(41.86638281894, -87.70)
+    private var redLineMarkers: ArrayList<Marker?>? = null
+    private var blueLineMarkers: ArrayList<Marker?>? = null
+    private var pinkLineMarkers: ArrayList<Marker?>? = null
+    private var purpleLineMarkers: ArrayList<Marker?>? = null
+    private var orangeLineMarkers: ArrayList<Marker?>? = null
+    private var yellowLineMarkers: ArrayList<Marker?>? = null
+    private var brownLineMarkers: ArrayList<Marker?>? = null
+    private var greenLineMarkers: ArrayList<Marker?>? = null
+    private var isAddedToMap = false
+    private var isTrackingLocation = false
+    private var markerInfoWindowAdapter: MarkerInfoWindowAdapter? = null
+    private var redLineListener: ValueEventListener? = null
+    private var blueLineListener: ValueEventListener? = null
+    private var brownLineListener: ValueEventListener? = null
+    private var greenLineListener: ValueEventListener? = null
+    private var orangeLineListener: ValueEventListener? = null
+    private var pinkLineListener: ValueEventListener? = null
+    private var purpleLineListener: ValueEventListener? = null
+    private var yellowLineListener: ValueEventListener? = null
+    private var locationManager: LocationManager? = null
+    private var locationPermissionGranted = false
+    private var locationButton: ImageButton? = null/*
          * Request location permission, so that we can get the location of the
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
-        if (ContextCompat.checkSelfPermission(requireContext().getApplicationContext(),
-                android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED) {
-            locationPermissionGranted = true;
-        } else {
-            ActivityCompat.requestPermissions(requireActivity(),
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                    PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+
+    /**
+     * Prompts the user for permission to use the device location.
+     */
+    private val locationPermission: Unit
+        private get() {
+            /*
+         * Request location permission, so that we can get the location of the
+         * device. The result of the permission request is handled by a callback,
+         * onRequestPermissionsResult.
+         */
+            if (ContextCompat.checkSelfPermission(requireContext().applicationContext,
+                            Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                locationPermissionGranted = true
+            } else {
+                ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION)
+            }
         }
+    private val locationListener = LocationListener { location ->
+        val latLng = LatLng(location.latitude, location.longitude)
+        val LOCATION_ZOOM_LEVEL = 15.0f
+        map!!.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM_LEVEL))
     }
-    private final LocationListener locationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(@NonNull Location location) {
-            LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-            float LOCATION_ZOOM_LEVEL = 15.0f;
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, LOCATION_ZOOM_LEVEL));
-        }
-    };
 
     @SuppressLint("MissingPermission")
-    private void updateUserLocationOnMap() {
+    private fun updateUserLocationOnMap() {
         try {
             if (locationPermissionGranted) {
-                locationManager = ((LocationManager) requireActivity().getSystemService(Context.LOCATION_SERVICE));
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                locationManager = requireActivity().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+                locationManager!!.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0f, locationListener)
             }
-        } catch (SecurityException | NullPointerException e)  {
-            Log.e("Exception: %s", e.getMessage(), e);
+        } catch (e: SecurityException) {
+            Log.e("Exception: %s", e.message, e)
+        } catch (e: NullPointerException) {
+            Log.e("Exception: %s", e.message, e)
         }
     }
+
     /**
      * Shows the user's location on the map if permission is granted
      */
     @SuppressLint("MissingPermission")
-    private void showUserLocation() {
+    private fun showUserLocation() {
         if (map == null) {
-            Log.e(TAG , "Null map");
-            return;
+            Log.e(TAG, "Null map")
+            return
         }
         try {
             //hide the button since custom button was created
-            map.getUiSettings().setMyLocationButtonEnabled(false);
+            map!!.uiSettings.isMyLocationButtonEnabled = false
             if (locationPermissionGranted) {
-                Log.e(TAG , "granted");
-                map.setMyLocationEnabled(true);
-
+                Log.e(TAG, "granted")
+                map!!.isMyLocationEnabled = true
             } else {
-                Log.d(TAG, "not granted");
-                map.setMyLocationEnabled(false);
-                getLocationPermission();
+                Log.d(TAG, "not granted")
+                map!!.isMyLocationEnabled = false
+                locationPermission
             }
-        } catch (SecurityException | Error e)  {
-            Log.e(TAG + " Exception: %s", e.getMessage());
+        } catch (e: SecurityException) {
+            Log.e("$TAG Exception: %s", e.message!!)
+        } catch (e: Error) {
+            Log.e("$TAG Exception: %s", e.message!!)
         }
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         try {
-            getParentFragmentManager().setFragmentResultListener("requestKey", this, (requestKey, result) -> {
-                Log.d(TAG, result.toString());
-                updateTrainFromBundle(result);
-            });
-        } catch (Error e) {
-            Log.d(TAG, e.getMessage());
+            parentFragmentManager.setFragmentResultListener("requestKey", this, { requestKey: String?, result: Bundle ->
+                Log.d(TAG, result.toString())
+                updateTrainFromBundle(result)
+            })
+        } catch (e: Error) {
+            Log.d(TAG, e.message!!)
         }
         //initialize arraylist of markers for each trainline
-        redLineMarkers = new ArrayList<>();
-        blueLineMarkers = new ArrayList<>();
-        brownLineMarkers = new ArrayList<>();
-        greenLineMarkers = new ArrayList<>();
-        orangeLineMarkers = new ArrayList<>();
-        purpleLineMarkers = new ArrayList<>();
-        pinkLineMarkers = new ArrayList<>();
-        yellowLineMarkers = new ArrayList<>();
+        redLineMarkers = ArrayList()
+        blueLineMarkers = ArrayList()
+        brownLineMarkers = ArrayList()
+        greenLineMarkers = ArrayList()
+        orangeLineMarkers = ArrayList()
+        purpleLineMarkers = ArrayList()
+        pinkLineMarkers = ArrayList()
+        yellowLineMarkers = ArrayList()
         //initialize listeners
-        redLineListener = initValueEventListener(redLineMarkers, R.drawable.ic_redline);
-        blueLineListener =  initValueEventListener(blueLineMarkers, R.drawable.ic_blueline);
-        brownLineListener = initValueEventListener(brownLineMarkers, R.drawable.ic_brownline);
-        greenLineListener = initValueEventListener(greenLineMarkers, R.drawable.ic_greenline);
-        orangeLineListener = initValueEventListener(orangeLineMarkers, R.drawable.ic_orangeline);
-        pinkLineListener = initValueEventListener(pinkLineMarkers, R.drawable.ic_pinkline);
-        purpleLineListener = initValueEventListener(purpleLineMarkers, R.drawable.ic_purpleline);
-        yellowLineListener = initValueEventListener(yellowLineMarkers, R.drawable.ic_yellowline);
+        redLineListener = initValueEventListener(redLineMarkers!!, R.drawable.ic_redline)
+        blueLineListener = initValueEventListener(blueLineMarkers!!, R.drawable.ic_blueline)
+        brownLineListener = initValueEventListener(brownLineMarkers!!, R.drawable.ic_brownline)
+        greenLineListener = initValueEventListener(greenLineMarkers!!, R.drawable.ic_greenline)
+        orangeLineListener = initValueEventListener(orangeLineMarkers!!, R.drawable.ic_orangeline)
+        pinkLineListener = initValueEventListener(pinkLineMarkers!!, R.drawable.ic_pinkline)
+        purpleLineListener = initValueEventListener(purpleLineMarkers!!, R.drawable.ic_purpleline)
+        yellowLineListener = initValueEventListener(yellowLineMarkers!!, R.drawable.ic_yellowline)
     }
 
-    private void handleUpdateTrain(boolean isChecked, String trainLine,
-                               ArrayList<Marker> trainMarkers, ValueEventListener trainListener) {
+    private fun handleUpdateTrain(isChecked: Boolean, trainLine: String,
+                                  trainMarkers: ArrayList<Marker?>?, trainListener: ValueEventListener?) {
         if (isChecked) {
-            updateTrainDataToScreen(trainLine, trainListener);
+            updateTrainDataToScreen(trainLine, trainListener)
         } else {
-            removeTrainMarkers(trainMarkers);
-            dbRef.child(trainLine).removeEventListener(trainListener);
+            removeTrainMarkers(trainMarkers)
+            dbRef.child(trainLine).removeEventListener(trainListener!!)
         }
     }
 
-    private void updateTrainFromBundle(Bundle bundle) {
-        for (String key: bundle.keySet()) {
-            boolean isChecked = bundle.getBoolean(key);
-            switch (key) {
-                case "Red Line":
-                   handleUpdateTrain(isChecked, key, redLineMarkers, redLineListener);
-                    break;
-                case "Blue Line":
-                  handleUpdateTrain(isChecked, key, blueLineMarkers, blueLineListener);
-                    break;
-                case "Brown Line":
-                    handleUpdateTrain(isChecked, key, brownLineMarkers, brownLineListener);
-                    break;
-                case "Green Line":
-                    handleUpdateTrain(isChecked, key, greenLineMarkers, greenLineListener);
-                    break;
-                case "Orange Line":
-                    handleUpdateTrain(isChecked, key, orangeLineMarkers, orangeLineListener);
-                    break;
-                case "Pink Line":
-                  handleUpdateTrain(isChecked, key, pinkLineMarkers, pinkLineListener);
-                    break;
-                case "Purple Line":
-                  handleUpdateTrain(isChecked, key, purpleLineMarkers, purpleLineListener);
-                    break;
-                case "Yellow Line":
-                  handleUpdateTrain(isChecked, key, yellowLineMarkers, yellowLineListener);
-                    break;
-                default:
-                    Log.d(TAG, "Default switch ERROR");
-                    break;
+    private fun updateTrainFromBundle(bundle: Bundle) {
+        for (key in bundle.keySet()) {
+            val isChecked = bundle.getBoolean(key)
+            when (key) {
+                "Red Line" -> handleUpdateTrain(isChecked, key, redLineMarkers, redLineListener)
+                "Blue Line" -> handleUpdateTrain(isChecked, key, blueLineMarkers, blueLineListener)
+                "Brown Line" -> handleUpdateTrain(isChecked, key, brownLineMarkers, brownLineListener)
+                "Green Line" -> handleUpdateTrain(isChecked, key, greenLineMarkers, greenLineListener)
+                "Orange Line" -> handleUpdateTrain(isChecked, key, orangeLineMarkers, orangeLineListener)
+                "Pink Line" -> handleUpdateTrain(isChecked, key, pinkLineMarkers, pinkLineListener)
+                "Purple Line" -> handleUpdateTrain(isChecked, key, purpleLineMarkers, purpleLineListener)
+                "Yellow Line" -> handleUpdateTrain(isChecked, key, yellowLineMarkers, yellowLineListener)
+                else -> Log.d(TAG, "Default switch ERROR")
             }
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_map, container, false);
+        val view = inflater.inflate(R.layout.fragment_map, container, false)
         //load map fragment
-        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        MainActivity mainActivity = (MainActivity) getActivity();
-        assert mainActivity != null;
-        locationButton = view.findViewById(R.id.locationButton);
-        mainActivity.bottomNavigationView.findViewById(R.id.trainsFragment).setEnabled(true);
-        mainActivity.bottomNavigationView.findViewById(R.id.stations).setEnabled(true);
-        if(mapFragment != null) {
-            mapFragment.getMapAsync(this);
-            locationButton.setOnClickListener(buttonView -> {
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+        val mainActivity = (activity as MainActivity?)!!
+        locationButton = view.findViewById(R.id.locationButton)
+        mainActivity.bottomNavigationView!!.findViewById<View>(R.id.trainsFragment).isEnabled = true
+        mainActivity.bottomNavigationView!!.findViewById<View>(R.id.stations).isEnabled = true
+        if (mapFragment != null) {
+            mapFragment.getMapAsync(this)
+            locationButton?.setOnClickListener(View.OnClickListener { buttonView: View ->
                 // button is pressed, toggle variable and view
-                if (buttonView.isPressed()) {
-                    toggleTracking(locationButton);
+                if (buttonView.isPressed) {
+                    toggleTracking(locationButton)
                 }
-            });
-
-
+            })
         }
-        return view;
+        return view
     }
 
-    @Override
-    public void onMapReady(@NonNull GoogleMap googleMap) {
-        Log.d(TAG, "MAP READY");
-        map = googleMap;
+    override fun onMapReady(googleMap: GoogleMap) {
+        Log.d(TAG, "MAP READY")
+        map = googleMap
         try { //add raw kml data to overlay train lines on map
-            KmlLayer lines = new KmlLayer(map, R.raw.cta_rail_layer, requireContext());
-            stops = new KmlLayer(map, R.raw.cta_stops, requireContext());
-            lines.addLayerToMap();
-            markerInfoWindowAdapter = new MarkerInfoWindowAdapter(getContext());
-            stops = new KmlLayer(map, R.raw.cta_stops, requireContext());
+            val lines = KmlLayer(map, R.raw.cta_rail_layer, requireContext())
+            stops = KmlLayer(map, R.raw.cta_stops, requireContext())
+            lines.addLayerToMap()
+            markerInfoWindowAdapter = MarkerInfoWindowAdapter(context)
+            stops = KmlLayer(map, R.raw.cta_stops, requireContext())
             // Get the button view
-        } catch (XmlPullParserException | IOException | Error e) {
-            e.printStackTrace();
+        } catch (e: XmlPullParserException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        } catch (e: Error) {
+            e.printStackTrace()
         }
         //move camera
-        float CHIAGO_ZOOM_LEVEL = 11.1f;
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(CHICAGO_LATLNG, CHIAGO_ZOOM_LEVEL));
+        val CHIAGO_ZOOM_LEVEL = 11.1f
+        map!!.moveCamera(CameraUpdateFactory.newLatLngZoom(CHICAGO_LATLNG, CHIAGO_ZOOM_LEVEL))
         // Prompt the user for permission.
-        getLocationPermission();
+        locationPermission
         // Turn on the My Location layer and the related control on the map.
-        showUserLocation();
+        showUserLocation()
         // Get the current location of the device and set the position of the map.
-
     }
 
     @SuppressLint("MissingPermission")
-    private void toggleTracking(ImageButton locationButton) {
-
-        Log.d(TAG, String.valueOf(isTrackingLocation));
+    private fun toggleTracking(locationButton: ImageButton?) {
+        Log.d(TAG, isTrackingLocation.toString())
         try {
             if (map == null) {
-                Log.e(TAG , "Null map");
-                return;
+                Log.e(TAG, "Null map")
+                return
             }
             if (!isTrackingLocation && locationPermissionGranted) {
-                locationButton.setImageResource(R.drawable.ic_location_on);
-                isTrackingLocation = true;
-//                map.setMyLocationEnabled(true); //can remove updateUI method and move method sig to here
-                updateUserLocationOnMap();
+                locationButton!!.setImageResource(R.drawable.ic_location_on)
+                isTrackingLocation = true
+                //                map.setMyLocationEnabled(true); //can remove updateUI method and move method sig to here
+                updateUserLocationOnMap()
+            } else {
+                locationButton!!.setImageResource(R.drawable.ic_location_off)
+                isTrackingLocation = false
+                //                map.setMyLocationEnabled(false);
+                locationManager!!.removeUpdates(locationListener)
             }
-            else {
-                locationButton.setImageResource(R.drawable.ic_location_off);
-                isTrackingLocation = false;
-//                map.setMyLocationEnabled(false);
-                locationManager.removeUpdates(locationListener);
-            }
-        }
-        catch (SecurityException | Error e)  {
-            Log.e(TAG + " Exception: %s", e.getMessage());
+        } catch (e: Error) {
+            Log.e(TAG + " Exception: %s", e.message!!)
         }
     }
 
-
-    private ValueEventListener initValueEventListener(ArrayList<Marker> markers, int resId) {
-        return new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Train> trainData = new ArrayList<>();
+    private fun initValueEventListener(markers: ArrayList<Marker?>, resId: Int): ValueEventListener {
+        return object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val trainData = ArrayList<Train>()
                 try {
                     //remove previous markers
-                    removeTrainMarkers( markers );
+                    removeTrainMarkers(markers)
                     //populate array with train data
-                    for (DataSnapshot ds : snapshot.getChildren()) {
-                        Train train = ds.getValue(Train.class);
-                        trainData.add(train);
-                        if(train != null ) {
-                            Log.d(TAG, train.toString());
+                    for (ds in snapshot.children) {
+                        val train = ds.getValue(Train::class.java)
+                        trainData.add(train as Train)
+                        if (train != null) {
+                            Log.d(TAG, train.toString())
                         }
                     }
                     addTrainMarkers(trainData,
                             resId,
-                            markers);
-
-                } catch(DatabaseException | NullPointerException | Error e) {
-                    Log.d(TAG , e.getMessage());
+                            markers)
+                } catch (e: DatabaseException) {
+                    Log.d(TAG + "DATABASE ERROR", e.message!!)
+                } catch (e: NullPointerException) {
+                    Log.d(TAG + "NULLPOINTER", e.message!!)
+                    e.printStackTrace()
                 } finally { //clear trainData to hopefully send it to GC
-                    trainData.clear();
+                    trainData.clear()
                 }
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Log.d(TAG, error.getMessage());
-            }
-        };
-    }
 
-    private void updateTrainDataToScreen(String trainLine, ValueEventListener eventListener){
-        dbRef.child(trainLine).addValueEventListener(eventListener);
-    }
-    private static void removeTrainMarkers(ArrayList<Marker> trainMarker){
-        try{
-            for(Marker trainM : trainMarker){
-                trainM.remove();
+            override fun onCancelled(error: DatabaseError) {
+                Log.d(TAG, error.message)
             }
-            trainMarker.clear();
-        } catch (Error | NullPointerException e) {
-            Log.d(TAG, e.getMessage());
         }
     }
-    private void addTrainMarkers(ArrayList<Train> trainLine, int trainColorIconResId,
-                                 ArrayList<Marker> trainMarkers) {
+
+    private fun updateTrainDataToScreen(trainLine: String, eventListener: ValueEventListener?) {
+        dbRef.child(trainLine).addValueEventListener(eventListener!!)
+    }
+
+    private fun addTrainMarkers(trainLine: ArrayList<Train>, trainColorIconResId: Int,
+                                trainMarkers: ArrayList<Marker?>) {
         try {
-            for (Train train : trainLine) {
-                String isDelay = Train.formatDelay(train.getIsDly());
-                String isApp = Train.formatApp(train.getIsApp());
-                String arrivalTime = Train.formatTime(train.getArrT());
-                String snippet = ("Train Line: " + train.getLine() + "\n" +
-                        "Next Stop: " + train.getNextStaNm() + "\n" +
-                        "Dest: " + train.getDestNm() + "\n" +
-                        "Delays: " + isDelay + "\n" +
-                        "Arrival Time: " + arrivalTime
-                        + "\n" + isApp
-                );
-                Bitmap bitmap = Utils.CreateBitmap.createBitmap(getContext(), trainColorIconResId);
-                MarkerOptions m1 = new MarkerOptions()
-                        .position(train.generateLatLng())
-                        .rotation(train.getHeading())
-                        .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+            for (train in trainLine) {
+                val isDelay: String? = Train.formatDelay(train.isDly)
+                val isApp: String? = Train.formatApp(train.isApp)
+                val arrivalTime: String? = Train.formatTime(train.arrT)
+                val snippet = """
+                    Train Line: ${train?.getLine()}
+                    Next Stop: ${train?.getNextStaNm()}
+                    Dest: ${train?.getDestNm()}
+                    Delays: $isDelay
+                    Arrival Time: $arrivalTime
+                    $isApp
+                    """.trimIndent()
+                val bitmap = CreateBitmap.createBitmap(context, trainColorIconResId)
+                val m1 = MarkerOptions()
+                        .position(train!!.generateLatLng())
+                        .rotation(train.heading.toFloat())
+                        .icon(BitmapDescriptorFactory.fromBitmap(bitmap!!))
                         .title("Train Info")
-                        .snippet(snippet);
-                Marker onMap = map.addMarker(m1);
-                map.setInfoWindowAdapter(markerInfoWindowAdapter);
-                trainMarkers.add(onMap);
+                        .snippet(snippet)
+                val onMap = map!!.addMarker(m1)
+                map!!.setInfoWindowAdapter(markerInfoWindowAdapter)
+                trainMarkers.add(onMap)
             }
-        } catch (NullPointerException e){
-            Log.d(TAG, e.getLocalizedMessage());
+        } catch (e: NullPointerException) {
+            Log.d(TAG, e.localizedMessage)
         }
     }
 
-    public void toggleStops() {
+    fun toggleStops() {
         try {
-            if(stops != null) {
-                if(!isAddedToMap) {
-                    Log.d(TAG, "stops added");
-                    stops.addLayerToMap();
-                    isAddedToMap = true;
-                }
-                else {
-                    stops.removeLayerFromMap();
-                    isAddedToMap = false;
-                    Log.d(TAG, "stops removed");
+            if (stops != null) {
+                if (!isAddedToMap) {
+                    Log.d(TAG, "stops added")
+                    stops!!.addLayerToMap()
+                    isAddedToMap = true
+                } else {
+                    stops!!.removeLayerFromMap()
+                    isAddedToMap = false
+                    Log.d(TAG, "stops removed")
                 }
             }
-        } catch (NullPointerException | Error e) {
-            Log.d(TAG, e.getMessage() + "Toggle Error");
+        } catch (e: NullPointerException) {
+        } catch (e: Error) {
+            Log.d(TAG, e.message + "Toggle Error")
         }
     }
 
-    @Override
-    public void onPause() {
+    override fun onPause() {
         //need to remove listeners to free up resources
-        Log.d(TAG, "ON PAUSE");
-        super.onPause();
+        Log.d(TAG, "ON PAUSE")
+        super.onPause()
+    }
+
+    companion object {
+        private const val TAG = "MAP_FRAG"
+        private var stops: KmlLayer? = null
+        private const val PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1
+        private fun removeTrainMarkers(trainMarker: ArrayList<Marker?>?) {
+            try {
+                for (trainM in trainMarker!!) {
+                    trainM!!.remove()
+                }
+                trainMarker.clear()
+            } catch (e: Error) {
+                Log.d(TAG, e.message!!)
+            } catch (e: NullPointerException) {
+                Log.d(TAG, e.message!!)
+            }
+        }
     }
 }

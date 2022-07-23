@@ -1,47 +1,38 @@
-package com.McGregor.chicagotraintracker.UI;
+package com.McGregor.chicagotraintracker.UI
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import com.McGregor.chicagotraintracker.R;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.model.Marker;
 
-public class MarkerInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
+import android.annotation.SuppressLint
 
-    private final View window;
-    private final Context context;
+import com.McGregor.chicagotraintracker.R
+import android.view.LayoutInflater
+import com.google.android.gms.maps.GoogleMap.InfoWindowAdapter
+import android.widget.TextView
+import android.content.Context
+import android.view.View
+import com.google.android.gms.maps.model.Marker
 
+
+class MarkerInfoWindowAdapter @SuppressLint("InflateParams") constructor(private val context: Context?) : InfoWindowAdapter {
     @SuppressLint("InflateParams")
-    public MarkerInfoWindowAdapter(Context context) {
-        this.context = context;
-        window = LayoutInflater.from(context).inflate(R.layout.marker_info_window, null);
+    private val window = LayoutInflater.from(context).inflate(R.layout.marker_info_window, null)
+    private fun renderWindowText(marker: Marker, view: View) {
+        val title = marker.title
+        val tvTitle = view.findViewById<TextView>(R.id.titleTextView)
+        tvTitle.setTextColor(context!!.resources.getColor(R.color.black, null))
+        val snippetBody = view.findViewById<TextView>(R.id.snippetTextView)
+        tvTitle.text = title
+        val snippet = marker.snippet
+        snippetBody.text = snippet
     }
 
-
-    private void renderWindowText(Marker marker, View view){
-        String title = marker.getTitle();
-        TextView tvTitle = view.findViewById(R.id.titleTextView);
-        tvTitle.setTextColor(context.getResources().getColor(R.color.black, null));
-        TextView snippetBody = view.findViewById(R.id.snippetTextView);
-        tvTitle.setText(title);
-        String snippet = marker.getSnippet();
-        snippetBody.setText(snippet);
-
+    override fun getInfoWindow(marker: Marker): View? {
+        renderWindowText(marker, window)
+        return window
     }
 
-    @Override
-    public View getInfoWindow(@NonNull Marker marker) {
-        renderWindowText(marker, window);
-        return window;
+    override fun getInfoContents(marker: Marker): View? {
+        renderWindowText(marker, window)
+        return window
     }
 
-    @Override
-    public View getInfoContents(@NonNull Marker marker) {
-        renderWindowText(marker, window);
-        return window;
-    }
 }

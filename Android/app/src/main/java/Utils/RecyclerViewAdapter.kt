@@ -1,72 +1,55 @@
-package Utils;
+package Utils
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import com.McGregor.chicagotraintracker.R;
-import java.util.ArrayList;
+import java.util.ArrayList
+import android.util.Log
+import android.os.Bundle
+import com.McGregor.chicagotraintracker.R
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import android.widget.TextView
+import android.widget.CheckBox
+import java.lang.IndexOutOfBoundsException
+import android.widget.ImageView
+import android.view.View
+import androidx.fragment.app.Fragment
+import java.lang.Error
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
-    private static final String TAG = "RecylcerViewAdapater";
-    private final ArrayList<String> trainNames;
-    private final ArrayList<Integer> trainResId;
-    private final Fragment fragment;
-    public RecyclerViewAdapter(Fragment fragment, ArrayList<String> trainNames, ArrayList<Integer> trainResId) {
-        this.trainNames = trainNames;
-        this.trainResId = trainResId;
-        this.fragment = fragment;
+class RecyclerViewAdapter(private val fragment: Fragment, private val trainNames: ArrayList<String>, private val trainResId: ArrayList<Int>) : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>() {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.train_list_items, parent, false)
+        return ViewHolder(view)
     }
 
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View   view = LayoutInflater.from(parent.getContext()).inflate(R.layout.train_list_items, parent, false);
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         try {
-            holder.imageview.setImageResource(trainResId.get(position));
-            holder.text.setText(trainNames.get(position));
-            holder.checkBox.setOnClickListener(view -> {
-                boolean checked = ((CheckBox) view).isChecked();
-                Bundle args = new Bundle();
-                args.putBoolean(trainNames.get(position), checked);
-                fragment.getParentFragmentManager().setFragmentResult("requestKey", args);
-            });
-        } catch (IndexOutOfBoundsException | Error e) {
-            Log.d(TAG, e.getMessage());
+            holder.imageview.setImageResource(trainResId[position])
+            holder.text.text = trainNames[position]
+            holder.checkBox.setOnClickListener { view: View ->
+                val checked = (view as CheckBox).isChecked
+                val args = Bundle()
+                args.putBoolean(trainNames[position], checked)
+                fragment.parentFragmentManager.setFragmentResult("requestKey", args)
+            }
+        } catch (e: IndexOutOfBoundsException) {
+            Log.d(TAG, e.message!!)
+        } catch (e: Error) {
+            Log.d(TAG, e.message!!)
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return trainNames.size();
+    override fun getItemCount(): Int {
+        return trainNames.size
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView imageview;
-        TextView text;
-        RelativeLayout parentLayout;
-        CheckBox checkBox;
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var imageview: ImageView = itemView.findViewById(R.id.rImage)
+        var text: TextView = itemView.findViewById(R.id.rText)
+        var checkBox: CheckBox = itemView.findViewById(R.id.rCheckBox)
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            imageview = itemView.findViewById(R.id.rImage);
-            text = itemView.findViewById(R.id.rText);
-            checkBox = itemView.findViewById(R.id.rCheckBox);
-            parentLayout = itemView.findViewById(R.id.rLayout);
-        }
     }
 
+    companion object {
+        private const val TAG = "RecylcerViewAdapater"
+    }
 }

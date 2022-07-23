@@ -1,5 +1,6 @@
 package data;
 
+
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -198,18 +199,18 @@ public class Train {
         String arrivalTime = arrt;
         String time = " AM";
         try {
-             arrivalTime = arrt.substring(arrt.length() - 8);
-             int ampm = Integer.valueOf(arrivalTime.substring(0,2));
-             if (ampm > 12) {
-                 ampm -=12;
-                 time = " PM";
-             }
-             else if (ampm == 0) {
-                 ampm +=12;
-                 time = " AM";
-             }
-             arrivalTime = ampm + arrivalTime.substring(2) + time;
-             return arrivalTime;
+            arrivalTime = arrt.substring(arrt.length() - 8);
+            int ampm = Integer.valueOf(arrivalTime.substring(0,2));
+            if (ampm > 12) {
+                ampm -=12;
+                time = " PM";
+            }
+            else if (ampm == 0) {
+                ampm +=12;
+                time = " AM";
+            }
+            arrivalTime = ampm + arrivalTime.substring(2) + time;
+            return arrivalTime;
         } catch (StringIndexOutOfBoundsException e) {
             return arrivalTime;
         }

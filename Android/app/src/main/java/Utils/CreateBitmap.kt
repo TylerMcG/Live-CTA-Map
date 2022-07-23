@@ -1,22 +1,25 @@
-package Utils;
+package Utils
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import androidx.core.content.ContextCompat;
+import androidx.core.content.ContextCompat
+import android.graphics.Bitmap
+import android.content.Context
+import android.graphics.Canvas
+import java.util.*
 
-import java.util.Objects;
-
-public class CreateBitmap {
-
-    public static Bitmap createBitmap(Context context, int drawableId){
-        Drawable drawable = ContextCompat.getDrawable(context, drawableId);
-        Bitmap bitmap = Bitmap.createBitmap(Objects.requireNonNull(drawable).getIntrinsicWidth(),
-                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
+object CreateBitmap {
+    fun createBitmap(context: Context?, drawableId: Int): Bitmap? {
+        val drawable = ContextCompat.getDrawable(context!!, drawableId)
+        val bitmap = Objects.requireNonNull(drawable).let {
+            it?.let { it1 ->
+                Bitmap.createBitmap(it1.intrinsicWidth,
+                        drawable!!.intrinsicHeight, Bitmap.Config.ARGB_8888)
+            }
+        }
+        val canvas = bitmap?.let { Canvas(it) }
+        canvas?.let { drawable?.setBounds(0, 0, it.width, canvas.height) }
+        if (canvas != null) {
+            drawable?.draw(canvas)
+        }
+        return bitmap
     }
 }

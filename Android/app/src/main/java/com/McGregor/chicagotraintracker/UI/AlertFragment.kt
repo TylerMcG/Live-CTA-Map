@@ -1,83 +1,61 @@
-package com.McGregor.chicagotraintracker.UI;
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import com.McGregor.chicagotraintracker.MainActivity;
-import com.McGregor.chicagotraintracker.R;
-
-import java.util.Objects;
+package com.McGregor.chicagotraintracker.UI
 
 
-public class AlertFragment extends Fragment {
-    private static final String TAG = "ALERT_FRAG";
-    private Bundle webViewState;
-    private WebViewClient webViewClient;
-    private WebView webView;
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        webViewClient = new WebViewClient();
+import android.annotation.SuppressLint
+import android.util.Log
+import android.os.Bundle
+import com.McGregor.chicagotraintracker.R
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import com.McGregor.chicagotraintracker.MainActivity
+import android.webkit.WebViewClient
+import android.webkit.WebView
+
+import android.view.View
+import androidx.fragment.app.Fragment
+import java.util.*
+
+class AlertFragment : Fragment() {
+    private var webViewState: Bundle? = null
+    private var webViewClient: WebViewClient? = null
+    private var webView: WebView? = null
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        webViewClient = WebViewClient()
     }
 
     @SuppressLint("SetJavaScriptEnabled")
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        MainActivity mainActivity = (MainActivity) getActivity();
-        Objects.requireNonNull(mainActivity).bottomNavigationView.findViewById(R.id.trainsFragment).setEnabled(false);
-        mainActivity.bottomNavigationView.findViewById(R.id.stations).setEnabled(false);
-        View view = inflater.inflate(R.layout.fragment_alert, container, false);
-        webView = view.findViewById(R.id.webview);
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webView.setWebViewClient(webViewClient);
-        if(webViewState == null) {
-            webView.loadUrl("https://www.transitchicago.com/travel-information/railstatus/");
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        val mainActivity = activity as MainActivity?
+        Objects.requireNonNull(mainActivity)!!.bottomNavigationView!!.findViewById<View>(R.id.trainsFragment).isEnabled = false
+        mainActivity!!.bottomNavigationView!!.findViewById<View>(R.id.stations).isEnabled = false
+        val view = inflater.inflate(R.layout.fragment_alert, container, false)
+        webView = view.findViewById(R.id.webview)
+        val webSettings = webView?.settings
+        webSettings?.javaScriptEnabled = true
+        webView?.webViewClient = webViewClient!!
+        if (webViewState == null) {
+            webView?.loadUrl("https://www.transitchicago.com/travel-information/railstatus/")
+        } else {
+            webView?.restoreState(webViewState!!)
         }
-        else {
-            webView.restoreState(webViewState);
-        }
-
-
-        return view;
-
+        return view
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    override fun onPause() {
+        webViewState = Bundle()
+        Log.d(TAG, "Alert Pause")
+        webView!!.saveState(webViewState!!)
+        super.onPause()
     }
 
-    @Override
-    public void onPause() {
-        webViewState = new Bundle();
-        Log.d(TAG, "Alert Pause");
-        webView.saveState(webViewState);
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
-    public void handleGoBack(){
-        if(webView != null && webView.canGoBack()) {
-            webView.goBack();
+    fun handleGoBack() {
+        if (webView != null && webView!!.canGoBack()) {
+            webView!!.goBack()
         }
     }
 
+    companion object {
+        private const val TAG = "ALERT_FRAG"
+    }
 }
-
